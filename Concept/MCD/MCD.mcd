@@ -1,0 +1,19 @@
+USER: id, nom, prenom, age, genre, mail, password
+
+effectue, 11 MOUVEMENT, 0N USER
+
+MOUVEMENT: id, type(ponctuel/recurent), montant  
+
+déclenche, 0N OPERATION, 11 MOUVEMENT
+
+OPERATION: id, name(debit/credit/epargne)
+
+appartient, 0N CATEGORY, 11 OPERATION
+
+CATEGORY: id, name
+
+
+
+
+
+

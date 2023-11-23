@@ -1,0 +1,31 @@
+{
+  "width": 198,
+  "height": 690,
+  "cx": [
+    [ "USER", 99 ],
+    [ "EFFECTUE", 99 ],
+    [ "MOUVEMENT", 99 ],
+    [ "DECLENCHE", 99 ],
+    [ "OPERATION", 99 ],
+    [ "APPARTIENT", 99 ],
+    [ "CATEGORY", 99 ]
+  ],
+  "cy": [
+    [ "USER", 85 ],
+    [ "EFFECTUE", 211 ],
+    [ "MOUVEMENT", 303 ],
+    [ "DECLENCHE", 395 ],
+    [ "OPERATION", 479 ],
+    [ "APPARTIENT", 563 ],
+    [ "CATEGORY", 647 ]
+  ],
+  "shift": [
+    [ "EFFECTUE,MOUVEMENT,0", 0 ],
+    [ "EFFECTUE,USER,0", 0 ],
+    [ "DECLENCHE,OPERATION,0", 0 ],
+    [ "DECLENCHE,MOUVEMENT,0", 0 ],
+    [ "APPARTIENT,CATEGORY,0", 0 ],
+    [ "APPARTIENT,OPERATION,0", 0 ]
+  ],
+  "ratio": []
+}
