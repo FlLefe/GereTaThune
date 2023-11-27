@@ -1,0 +1,26 @@
+{
+  "name": "gertathune",
+  "version": "1.0.0",
+  "description": "Dossier Concept pour noter tous ce que l'on voudra produire dans le projet",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "db:create": "psql -U geretathune -f data/create_db.sql",
+    "db:seed": "psql -U geretathune -f data/populate_db.sql",
+    "db:reset": "npm run db:create && npm run db:seed"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "pg": "^8.11.3",
+    "sequelize": "^6.35.1"
+  }
+}
