@@ -26,6 +26,7 @@ CREATE TABLE "category" (
 CREATE TABLE "movement" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "type" VARCHAR(128) NOT NULL,
+    CONSTRAINT check_type CHECK (type IN ('Ponctuel', 'Mensuel'))
     "amount" INTEGER NOT NULL,
     "operation_id" INTEGER REFERENCES operation("id"),
     "category_id" INTEGER REFERENCES category("id"),
