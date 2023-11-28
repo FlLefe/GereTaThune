@@ -1,0 +1,11 @@
+<nav>
+    <a href="/">Accueil</a>
+    <% if (locals.user !== null){%>
+        <a href="/finance">Mes finances</a>
+        <a href="/logout">Se déconnecter</a>
+        <p><%= locals.user.firstname %></p>
+    <%} else {%>
+        <a href="/register">S'inscrire</a>
+        <a href="/login">Se connecter</a>
+    <%}%>    
+</nav>

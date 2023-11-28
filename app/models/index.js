@@ -1,37 +1,47 @@
 const User = require('./User');
-const Movement = require('./List');
-const Operation = require('./Card');
-const Category = require('./Label');
+const Movement = require('./Movement');
+const Operation = require('./Operation');
+const Category = require('./Category');
 
-User.hasMany(List, {
+// Associations User - Movement
+User.hasMany(Movement, {
     foreignKey: 'user_id',
-    as: 'lists',
+    as: 'movements',
 });
-List.belongsTo(User, {
+Movement.belongsTo(User, {
     foreignKey: 'user_id',
     as: 'user',
 });
 
-
-List.hasMany(Card,{
-    foreignKey: 'list_id',
-    as: 'cards'
+// Assocations Movement - Operation
+Operation.hasMany(Movement,{
+    foreignKey: 'operation_id',
+    as: 'movements'
 })
-Card.belongsTo(List, {
-    foreignKey: 'list_id',
-    as: 'list'
+Movement.belongsTo(Operation, {
+    foreignKey: 'operation_id',
+    as: 'operation'
 });
 
 
-Card.belongsToMany(Label, {
-    through: 'card_has_label',
-    as: "labels",
-    foreignKey: 'card_id' 
-});
-Label.belongsToMany(Card, {
-    through: 'card_has_label',
-    as: "cards",
-    foreignKey: 'label_id', 
+// Assocations Movement - Category
+Category.hasMany(Movement,{
+    foreignKey: 'category_id',
+    as: 'movements'
+})
+Movement.belongsTo(Category, {
+    foreignKey: 'category_id',
+    as: 'category'
 });
 
-module.exports = { User, List, Card, Label };
+// Assocations Operation - Category pour les formulaires dynamiques
+Operation.hasMany(Category,{
+    foreignKey: 'operation_id',
+    as: 'categories'
+})
+Category.belongsTo(Operation, {
+    foreignKey: 'operation_id',
+    as: 'operation'
+});
+
+module.exports = { User, Movement, Operation, Category };
