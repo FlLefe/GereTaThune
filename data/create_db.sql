@@ -9,28 +9,36 @@ CREATE TABLE "user" (
     "firstname" VARCHAR(128) NOT NULL,
     "lastname" VARCHAR(128) NOT NULL,
     "age" INTEGER NOT NULL,
-    "role" VARCHAR(128) DEFAULT 'user'
+    "role" VARCHAR(128) DEFAULT 'user',
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE "operation" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" VARCHAR(128) NOT NULL
+    "name" VARCHAR(128) NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE "category" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(128) NOT NULL,
-    "operation_id" INTEGER REFERENCES operation("id")
+    "operation_id" INTEGER REFERENCES operation("id"),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE "movement" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "type" VARCHAR(128) NOT NULL,
-    CONSTRAINT check_type CHECK (type IN ('Ponctuel', 'Mensuel'))
-    "amount" INTEGER NOT NULL,
+    CONSTRAINT check_type CHECK (type IN ('Ponctuel', 'Mensuel')),
+    "amount" FLOAT NOT NULL,
     "operation_id" INTEGER REFERENCES operation("id"),
     "category_id" INTEGER REFERENCES category("id"),
-    "user_id" INTEGER REFERENCES "user"("id")
+    "user_id" INTEGER REFERENCES "user"("id"),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ
 );
 
 END;

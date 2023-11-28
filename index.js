@@ -3,16 +3,21 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
-// Local imports
-const router = require('./app/routers');
+const { loadUserToLocals, initSession } = require('./middlewares')
 
-// Body parser
+const router = require('./app/router');
+
 app.use(express.urlencoded({ extended: true }));
 
-// Statically served files
-app.use(express.static('./public'));
+app.set('view engine', 'ejs');
+app.set('views', './app/views');
 
-// Nos Routes
+app.use(express.static('./assets'));
+
+app.use(initSession);
+
+app.use(loadUserToLocals);
+
 app.use(router);
 
 const port = process.env.PORT || 3000;
