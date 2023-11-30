@@ -16,7 +16,7 @@ Category.init(
     },
     {
         sequelize,
-        tableName: 'list',
+        tableName: 'category',
     }
 );
 

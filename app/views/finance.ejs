@@ -4,26 +4,44 @@
 
     <h1>Bienvenue sur ta gestion financière</h1>
 
-  <form class="text-center container d-flex flex-column" method="post">
-    <div>
-        <label for="email">Type :</label>
-        <input type="text" name="type" placeholder="" required>
-    </div>
-    <div>
-        <label for="password">Amount</label>
-        <input type="password" name="amount" placeholder="" required>
-    </div>
-    <div>
-        <label for="lastname">category_id</label>
-        <input type="text" name="category_id" placeholder="lastname" required>
-    </div>
-    <div>
-        <label for="firstname">operation_id</label>
-        <input type="text" name="operation_id" placeholder="firstname" required>
-    </div>
-    
-    <button type="submit">Créer un compte</button>
-  </form>
+    <% if (movements){%>
+        <% for (const movement of movements) {%>
+        <p><%= movement.operation.name %>, <%= movement.category.name %>, <%= movement.amount %>€ </p>
+        <%}%>
+      <%}%>
+
+      <%if(categories){%>
+        <% for (const category of categories){%>
+        <form action="/finance/add/<%= category.id %>" method="post">
+            <div>
+                <p><%= category.name %></p>
+            </div>
+            <div>
+                <select name="type" required>
+                    <option value="Ponctuelle">Dépense ponctuelle</option>
+                    <option value="Mensuelle">Dépense mensuelle</option>
+                </select>
+            </div>
+            <div>
+                <label for="amount">Montant</label>
+                <input type="number" name="amount" placeholder="Montant" required>
+            </div>
+            <div>
+                <label for="category_id">Catégorie</label>
+                    <select name="category_id" required>
+                        <%for(const catName of category.categories){%>
+                        <option value="<%= catName.id %>"><%= catName.name %></option>
+                        <%}%>
+                    </select>
+            </div>
+            
+            <button type="submit">Ajouter</button>
+        </form>
+        <%}%>
+    <%}%>
+
+  
+  
     
 </body>
 </html>

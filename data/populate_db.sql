@@ -15,13 +15,19 @@ INSERT INTO "category" ("name", "operation_id")
 VALUES ('Loyer', '1'),
 ('Crédit voiture', '1'),
 ('Assurance auto', '1'),
-('Electricité', '1'),
-('Salaire', '2');
+('Rente', '2'),
+('Loto', '2'),
+('Salaire', '2'),
+('Etrennes', '2'),
+('Livret A', '3'),
+('PEL', '3'),
+('Assurance vie', '3'),
+('Crypto', '3');
 
 INSERT INTO "movement" ("type", "amount", "operation_id", "category_id", "user_id")
-VALUES ('Monthly', 1400, 2, 2, 2),
-('Monthly', 1600, 2, 2, 3),
-('Monthly', 1200, 2, 2, 1),
-('Punctual', 100, 1, 2, 2);
+VALUES ('Mensuelle', 1400, 2, 2, 2),
+('Mensuelle', 1600, 2, 2, 3),
+('Mensuelle', 1200, 2, 2, 1),
+('Ponctuelle', 100, 1, 2, 2);
 
 END;

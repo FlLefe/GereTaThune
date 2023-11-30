@@ -32,7 +32,7 @@ CREATE TABLE "category" (
 CREATE TABLE "movement" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "type" VARCHAR(128) NOT NULL,
-    CONSTRAINT check_type CHECK (type IN ('Punctual', 'Monthly')),
+    CONSTRAINT check_type CHECK (type IN ('Ponctuelle', 'Mensuelle')),
     "amount" FLOAT NOT NULL,
     "operation_id" INTEGER REFERENCES operation("id"),
     "category_id" INTEGER REFERENCES category("id"),

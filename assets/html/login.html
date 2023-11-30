@@ -9,19 +9,9 @@
 <body>
     <nav id="nav"><a href="../html/home.html">Accueil</a></nav>
 
-
     <h1>Login</h1>
 
     <section class="container mt-5 mb-5">
-        <% if (locals.error) { %>
-        <div class="alert alert-danger">
-            <p class="text-danger"><%= error %></p>
-        </div>
-        <% } %> <% if (locals.message) { %>
-        <div class="alert alert-success">
-            <p class="text-success"><%= message %></p>
-        </div>
-        <% } %>
         <h1 class="large text-primary">Sign In</h1>
         <p class="lead"><i class="fas fa-user"></i> Sign into Your Account</p>
         <form class="form" method="POST" action="/login">

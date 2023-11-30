@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { homeController, userController, financeController, sessionController } = require('../controllers');
+const { homeController, userController, financeController } = require('../controllers');
 const { auth, isAdmin } = require('../../middlewares');
 
 // Page d'accueil
@@ -17,8 +17,6 @@ router.post('/login', userController.login);
 router.get('/logout', userController.logout);
 
 router.get('/finance', financeController.index);
-router.post('/finance', financeController.addMovement);
-
-router.get('/api/session', sessionController.sessionDetails);
+router.post('/finance/add/:id', financeController.addMovement);
 
 module.exports = router;
