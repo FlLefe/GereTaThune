@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { homeController, userController, financeController } = require('../controllers');
+const { homeController, userController, financeController, sessionController } = require('../controllers');
 const { auth, isAdmin } = require('../../middlewares');
 
 // Page d'accueil
@@ -19,14 +19,6 @@ router.get('/logout', userController.logout);
 router.get('/finance', financeController.index);
 router.post('/finance', financeController.addMovement);
 
-// // Affichage page formulaire de login
-// router.get('/login', sessionController.index);
-// router.post('/login', sessionController.login);
-
-// router.get('/logout', sessionController.logout);
-
-// // Affichage page formulaire register
-// router.get('/register', userController.index);
-// router.post('/register', userController.register);
+router.get('/api/session', sessionController.sessionDetails);
 
 module.exports = router;

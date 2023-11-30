@@ -14,6 +14,15 @@ app.set('views', './app/views');
 
 app.use(express.static('./assets'));
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500'); // Remplace avec l'URL de ton site
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+  
+    next();
+  });
+
 app.use(initSession);
 
 app.use(loadUserToLocals);

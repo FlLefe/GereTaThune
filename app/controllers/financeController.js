@@ -7,6 +7,7 @@ const financeController = {
 
         res.render('finance', {movements});
     },
+    
     addMovement: async (req, res) => {
 
         const { type, amount, category_id, operation_id } = req.body
