@@ -6,6 +6,7 @@ const { auth, isAdmin } = require('../../middlewares');
 
 // Page d'accueil
 router.get('/', homeController.index);
+router.get('/cgu', homeController.cgu);
 
 router.get('/register', userController.indexRegister);
 router.post('/register', userController.register);
@@ -15,7 +16,8 @@ router.post('/login', userController.login);
 
 router.get('/logout', userController.logout);
 
-router.get('/finance', auth, financeController.index);
+router.get('/finance', financeController.index);
+router.post('/finance', financeController.addMovement);
 
 // // Affichage page formulaire de login
 // router.get('/login', sessionController.index);
