@@ -19,9 +19,9 @@ VALUES ('Loyer', '1'),
 ('Salaire', '2');
 
 INSERT INTO "movement" ("type", "amount", "operation_id", "category_id", "user_id")
-VALUES ('Mensuel', 1400, 2, 2, 2),
-('Mensuel', 1600, 2, 2, 3),
-('Mensuel', 1200, 2, 2, 1),
-('Ponctuel', 100, 1, 2, 2);
+VALUES ('Monthly', 1400, 2, 2, 2),
+('Monthly', 1600, 2, 2, 3),
+('Monthly', 1200, 2, 2, 1),
+('Punctual', 100, 1, 2, 2);
 
 END;

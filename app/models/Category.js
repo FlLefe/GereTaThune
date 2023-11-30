@@ -7,9 +7,11 @@ Category.init(
     {
         name: {
             type: DataTypes.STRING,
+            allowNull: false,
         },
         operation_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
         },
     },
     {
