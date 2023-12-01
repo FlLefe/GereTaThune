@@ -5,9 +5,20 @@ const financeController = {
     index: async (req, res) => {
         
         const idUser = req.session.user.id
+        // const movements = await Operation.findAll({
+        //     include : [{model : Movement, as: "movements",
+        //     include: 'category',
+        //     where : {user_id : idUser}}],
+        //     order: [
+        //         ['movements', 'category_id', 'ASC'],
+        //         ['movements', 'amount', 'DESC']
+        //       ]
+            
+        // })
+
         const movements = await Operation.findAll({
-            include : [{model : Movement, as: "movements",
-            include: 'category',
+            include : [{model : Category, as: "categories",
+            include: {model : Movement, as :'movements'},
             where : {user_id : idUser}}],
             order: [
                 ['movements', 'category_id', 'ASC'],
@@ -16,9 +27,9 @@ const financeController = {
             
         })
 
-        const movementByCategory = await Category.findAll({
-            include : 'movements',
-        })
+        // const movementByCategory = await Category.findAll({
+        //     include : 'movements',
+        // })
 
         console.log(JSON.stringify(movementByCategory, null, 2))
 
@@ -26,7 +37,7 @@ const financeController = {
         const categories = await Operation.findAll({
             include: 'categories'
         })
-        res.render('finance', { movements, categories });
+        res.render('finance', { movements, categories, movementByCategory });
     },
     
     addMovement: async (req, res) => {
