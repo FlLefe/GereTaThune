@@ -11,23 +11,26 @@ VALUES ('Débit'),
 ('Crédit'),
 ('Epargne');
 
-INSERT INTO "category" ("name", "operation_id")
-VALUES ('Loyer', '1'),
-('Crédit voiture', '1'),
-('Assurance auto', '1'),
-('Rente', '2'),
-('Loto', '2'),
-('Salaire', '2'),
-('Etrennes', '2'),
-('Livret A', '3'),
-('PEL', '3'),
-('Assurance vie', '3'),
-('Crypto', '3');
+INSERT INTO "category" ("name", "operation_id", "color")
+VALUES ('Loyer', '1', 'purple'),
+('Crédit voiture', '1', 'green'),
+('Assurance auto', '1', 'blue'),
+('Rente', '2', 'red'),
+('Loto', '2', 'darkgrey'),
+('Salaire', '2', 'green'),
+('Etrennes', '2', 'green'),
+('Livret A', '3', 'green'),
+('PEL', '3', 'green'),
+('Assurance vie', '3', 'green'),
+('Crypto', '3', 'green');
 
-INSERT INTO "movement" ("type", "amount", "operation_id", "category_id", "user_id")
-VALUES ('Mensuelle', 1400, 2, 2, 2),
-('Mensuelle', 1600, 2, 2, 3),
-('Mensuelle', 1200, 2, 2, 1),
-('Ponctuelle', 100, 1, 2, 2);
+INSERT INTO "movement" ("type", "amount", "comment", "operation_id", "category_id", "user_id")
+VALUES ('Mensuelle', 1400,'essaiCommentaire1', 2, 2, 2),
+('Mensuelle', 1600,'essaiCommentaire1', 2, 2, 3),
+('Mensuelle', 1200,'essaiCommentaire1', 2, 2, 1),
+('Ponctuelle', 100,'essaiCommentaire1', 1, 2, 2),
+('Ponctuelle', 555, 'essaiCommentaire1', 1, 2, 4),
+('Ponctuelle', 555, 'essaiCommentaire2', 1, 2, 4),
+('Ponctuelle', 555, 'essaiCommentaire3', 1, 2, 4);
 
 END;

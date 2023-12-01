@@ -1,4 +1,23 @@
-body {
-    text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+td, th {
+    border: 2px solid black;
+    border-collapse: collapse;
 }
 
+td {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.spaceColumn {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}

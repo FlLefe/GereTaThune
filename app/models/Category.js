@@ -9,6 +9,10 @@ Category.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        color: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         operation_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

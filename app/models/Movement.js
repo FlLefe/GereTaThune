@@ -14,6 +14,10 @@ Movement.init(
             type: DataTypes.FLOAT,
             allowNull: false
         },
+        comment: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         category_id: {
             type: DataTypes.INTEGER,
             allowNull: false
