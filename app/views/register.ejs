@@ -2,44 +2,48 @@
 
 <%- include('partials/nav') %>
 
-    <h1>Register Page</h1>
+    <h1 class="text-2xl font-bold text-zinc-700">Register Page</h1>
 
-    <section class="container mt-5 mb-5">
+    <section class="flex flex-col gap-2 text-center">
         <% if (locals.error) { %>
-            <div class="alert alert-danger">
-                <p class="text-danger"><%= error %> </p>
+            <div>
+                <p><%= error %></p>
             </div>
         <% } %>
-        <h1 class="large text-primary">Sign Up</h1>
-        <p class="lead"><i class="fas fa-user"></i> Create Your Account</p>
-        <form class="form" method="POST" action="/register">
-            <div class="form-group">
-                <input type="text" placeholder="Votre prénom" name="firstname" />
+        <form  method="POST" action="/register">
+            <div class="flex flex-col gap-4 text-end py-8">
+                <div>
+                    <label for="firstname">Votre prénom : </label>
+                    <input type="text" name="firstname" required>
+                </div>
+                <div>
+                    <label for="lastname">Votre nom : </label>
+                    <input type="text" name="lastname" required>
+                </div>
+                <div>
+                    <label for="age">Votre age : </label>
+                    <input type="text" name="age" required>
+                </div>
+                <div>
+                    <label for="email">Adresse mail : </label>
+                    <input type="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Mot de passe : </label>
+                    <input type="password" name="password" required>
+                </div>
+                <div>
+                    <label for="password">Confirmer mot de passe : </label>
+                    <input type="password" name="passwordConfirm"required>
+                </div>
+                <div class="text-center">
+                    <label for="cgu"><a href="/cgu" target="_blank">CGU</a></label>
+                    <input type="checkbox" name="cgu" id="cgu" required>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="text" placeholder="Votre nom" name="lastname" />
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Votre age" name="age" />
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email Address" name="email" />
-            </div>
-            <div class="form-group">
-                <input type="password" placeholder="Password" name="password" />
-            </div>
-            <div class="form-group">
-                <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    name="passwordConfirm"
-                />
-            </div>
-            <label for="cgu"><a href="/cgu" target="_blank">CGU</a></label>
-            <input type="checkbox" name="cgu" id="cgu" required>
-            <input type="submit" class="btn btn-primary" value="Register" />
+            <input type="submit" class="w-40 h-10 bg-slate-400 rounded-md cursor-pointer hover:bg-slate-300 mb-10" value="Register" />
         </form>
-        <p class="my-1">Already have an account? <a href="/login">Sign In</a></p>
+        <p>Already have an account ? <a class="hover:text-red-700" href="/login">Sign In</a></p>
     </section>
 </body>
 </html>

@@ -2,46 +2,78 @@
 
 <%- include('partials/nav') %>
 
-    <h1>Bienvenue sur ta gestion financière</h1>
+    <h1 class="text-2xl font-bold text-zinc-700">Bienvenue sur ta gestion financière</h1>
 
-    <% if (movements){%>
-        <% for (const movement of movements) {%>
-        <p><%= movement.operation.name %>, <%= movement.category.name %>, <%= movement.amount %>€ </p>
+      <div class="flex flex-col my-4">
+              <%if(categories){%>
+                <% for (const category of categories){%>
+                <form class="flex py-2 gap-x-2" action="/finance/add/<%= category.id %>" method="post">
+                    <div class="w-16">
+                        <p><%= category.name %></p>
+                    </div>
+                    <div>
+                        <select name="type" required>
+                            <option value="Ponctuelle">Dépense ponctuelle</option>
+                            <option value="Mensuelle">Dépense mensuelle</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input class="rounded" type="number" name="amount" placeholder="Montant" required>
+                    </div>
+                    <div>
+                        <input class="rounded" type="text" name="comment" placeholder="commentaire" required>
+                    </div>
+                    <div>
+                            <select class="w-40" name="category_id" required>
+                                <%for(const catName of category.categories){%>
+                                <option value="<%= catName.id %>"><%= catName.name %></option>
+                                <%}%>
+                            </select>
+                    </div>
+              
+                    <button class="w-20 bg-slate-400 rounded-md hover:bg-slate-300" type="submit">Ajouter</button>
+                </form>
+                <%}%>
+                  <%}%>
+      </div>
+
+    <% for (const operation of movements) {%>
+        <table class="<%= operation.name %>">
+          <thead>
+            <tr>
+              <th colspan="3"><%= operation.name %>s du mois</th>
+              <th colspan="1" class="spaceColumn"></th>
+              <th colspan="1" class="">économie</th>
+              <th colspan="1" class="spaceColumn"></th>
+              <th colspan="2" class=""><%= operation.name %>s du mois précédent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Type</td>
+              <td>Catégorie</td>
+              <td>€</td>
+              <td class="spaceColumn"></td>
+              <td>€</td>
+              <td class="spaceColumn"></td>
+              <td>Catégorie</td>
+              <td>€</td>
+            </tr>
+            <% for (const movement of operation.movements) {%>
+              <tr style="color: <%= movement.category.color %>">
+                  <td><%= movement.type %></td>
+                  <td><ul><%= movement.category.name %> <li> <%= movement.comment %></li> </ul></td>
+                  <td><%= movement.amount %></td>
+                  <td class="spaceColumn"></td>
+                  <td><%= (movement.amount - 5) %></td>
+                  <td class="spaceColumn"></td>
+                  <td>Catégorie</td>
+                  <td>€</td>  
+              </tr>
+              <%}%>
+          </tbody>
+        </table>
         <%}%>
-      <%}%>
 
-      <%if(categories){%>
-        <% for (const category of categories){%>
-        <form action="/finance/add/<%= category.id %>" method="post">
-            <div>
-                <p><%= category.name %></p>
-            </div>
-            <div>
-                <select name="type" required>
-                    <option value="Ponctuelle">Dépense ponctuelle</option>
-                    <option value="Mensuelle">Dépense mensuelle</option>
-                </select>
-            </div>
-            <div>
-                <label for="amount">Montant</label>
-                <input type="number" name="amount" placeholder="Montant" required>
-            </div>
-            <div>
-                <label for="category_id">Catégorie</label>
-                    <select name="category_id" required>
-                        <%for(const catName of category.categories){%>
-                        <option value="<%= catName.id %>"><%= catName.name %></option>
-                        <%}%>
-                    </select>
-            </div>
-            
-            <button type="submit">Ajouter</button>
-        </form>
-        <%}%>
-    <%}%>
-
-  
-  
-    
 </body>
 </html>
