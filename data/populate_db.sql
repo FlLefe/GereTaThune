@@ -4,7 +4,8 @@ INSERT INTO "user" ("email", "password", "firstname", "lastname", "age", "role")
 VALUES ('Florian@gmail.com', 'florian', 'Florian', 'Lefebvre', '28', 'user'),
 ('Guillaume@gmail.com', 'guillaume', 'Guillaume', 'Comparet', '30', 'user'),
 ('Matthieu@gmail.com', 'matthieu', 'Matthieu', 'Coutant', '35', 'user'),
-('geretonadmin@gmail.com', 'admin', 'admin', 'goodafternoon', '80', 'admin');
+('geretonadmin@gmail.com', 'admin', 'admin', 'goodafternoon', '80', 'admin'),
+('adminflo@gmail.com', '$2b$10$F8OYg.RCb88k36joMTaxN.O274fUWM0ApOaa3/etpdMgl.yT8qQbK', 'flo', 'flo', '30', 'user');
 
 INSERT INTO "operation" ("name")
 VALUES ('Débit'),
@@ -12,9 +13,15 @@ VALUES ('Débit'),
 ('Epargne');
 
 INSERT INTO "category" ("name", "operation_id", "color")
-VALUES ('Loyer', '1', 'purple'),
-('Crédit voiture', '1', 'green'),
-('Assurance auto', '1', 'blue'),
+VALUES ('Loyer', '1', 'AliceBlue'),
+('Crédit voiture', '1', 'AntiqueWhite'),
+('Assurance auto', '1', 'Aquamarine'),
+('Courses alimentaires', '1', 'Blue'),
+('Electricité', '1', 'BlueViolet'),
+('Eau', '1', 'CadetBlue'),
+('Frais animaux', '1', 'DarkKhaki'),
+('Internet', '1', 'DarkOrchid'),
+('Telephone', '1', 'Coral'),
 ('Rente', '2', 'red'),
 ('Loto', '2', 'darkgrey'),
 ('Salaire', '2', 'green'),

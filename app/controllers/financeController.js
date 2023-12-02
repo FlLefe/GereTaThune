@@ -18,26 +18,25 @@ const financeController = {
 
         const movements = await Operation.findAll({
             include : [{model : Category, as: "categories",
-            include: {model : Movement, as :'movements'},
-            where : {user_id : idUser}}],
-            order: [
-                ['movements', 'category_id', 'ASC'],
-                ['movements', 'amount', 'DESC']
-              ]
+            include: [{model : Movement, as :'movements', where : {user_id : idUser}
+            }]
+        }]
             
         })
+
+
 
         // const movementByCategory = await Category.findAll({
         //     include : 'movements',
         // })
 
-        console.log(JSON.stringify(movementByCategory, null, 2))
+        console.log(JSON.stringify(movements, null, 2))
 
         // console.log(JSON.stringify(movements, null, 2))
         const categories = await Operation.findAll({
             include: 'categories'
         })
-        res.render('finance', { movements, categories, movementByCategory });
+        res.render('finance', { movements, categories });
     },
     
     addMovement: async (req, res) => {

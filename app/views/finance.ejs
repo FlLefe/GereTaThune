@@ -21,7 +21,7 @@
                         <input class="rounded" type="number" name="amount" placeholder="Montant" required>
                     </div>
                     <div>
-                        <input class="rounded" type="text" name="comment" placeholder="commentaire" required>
+                        <input class="rounded" type="text" name="comment" placeholder="commentaire">
                     </div>
                     <div>
                             <select class="w-40" name="category_id" required>
@@ -50,8 +50,8 @@
           </thead>
           <tbody>
             <tr>
-              <td>Type</td>
               <td>Catégorie</td>
+              <td>Mouvements</td>
               <td>€</td>
               <td class="spaceColumn"></td>
               <td>€</td>
@@ -59,13 +59,22 @@
               <td>Catégorie</td>
               <td>€</td>
             </tr>
-            <% for (const movement of operation.movements) {%>
-              <tr style="color: <%= movement.category.color %>">
-                  <td><%= movement.type %></td>
-                  <td><ul><%= movement.category.name %> <li> <%= movement.comment %></li> </ul></td>
-                  <td><%= movement.amount %></td>
+            <% for (const category of operation.categories) {%>
+              <tr style="background-color: <%= category.color %>">
+                  <td><%= category.name %></td>
+                  <td> <p class="<%= category.name %>" > -> Afficher liste mouvements <- </p>
+                    
+                    <ul class=""> <% for (const movement of category.movements) {%>
+                    <li><%= movement.type %> -- <%= movement.comment %> -- <%= movement.amount %>€ </li>
+                   <%}%> </ul></td>
+                   <td><% let total = 0; %>
+                  <%for (const anAmount of category.movements) {%>
+                    <% total = (total + anAmount.amount) %>
+                  <%}%>
+                  <%= total %>
+                  </td>
                   <td class="spaceColumn"></td>
-                  <td><%= (movement.amount - 5) %></td>
+                  <td>Calcul écart</td>
                   <td class="spaceColumn"></td>
                   <td>Catégorie</td>
                   <td>€</td>  
@@ -74,6 +83,8 @@
           </tbody>
         </table>
         <%}%>
+
+        <script src="/js/finance.js"></script>
 
 </body>
 </html>
