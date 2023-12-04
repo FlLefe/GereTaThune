@@ -4,7 +4,7 @@
   "description": "Dossier Concept pour noter tous ce que l'on voudra produire dans le projet",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node",
     "dev": "nodemon index.js",
     "db:create": "psql -U geretathune -f data/create_db.sql",
     "db:seed": "psql -U geretathune -f data/populate_db.sql",

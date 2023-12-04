@@ -1,28 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-td, th {
-    border: 2px solid black;
-    border-collapse: collapse;
-}
-
-td {
-    padding-left: 1em;
-    padding-right: 1em;
-}
-
-.spaceColumn {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    border: none;
+body {
+    /* font-family: 'Asap', sans-serif;*/
+    /* font-family: 'Merriweather', serif; */
+    /* font-family: 'Mooli', sans-serif;*/
+     /* font-family: 'Roboto', sans-serif;  */
+    font-family: 'Roboto Slab', serif;
+    box-sizing: border-box;
 }
 
 .hidden {
     display: none;
 }
 
-.arrow {
+/* .arrow {
     height: 30px;
     width: 30px;
-}
+}  */

@@ -4,7 +4,7 @@
 
     <h1 class="text-2xl font-bold text-zinc-700">Login</h1>
 
-    <section class="flex flex-col gap-2 text-center">
+    <section class="flex flex-col gap-2 text-center border-2 m-4 py-4 px-16 rounded-lg bg-slate-200">
         <% if (locals.error) { %>
         <div>
             <p><%= error %></p>
@@ -17,13 +17,13 @@
             <form class="flex flex-col items-center gap-4 text-end py-8" method="POST" action="/login">
             <div>
                 <label for="email">Adresse mail : </label>
-                <input type="email" name="email" value="adminflo@gmail.com" required>
+                <input class="rounded pl-4" type="email" name="email" value="adminflo@gmail.com" required>
             </div>
             <div>
                 <label for="password">Mot de passe : </label>
-                <input type="password" name="password" value="adminadmin" required>
+                <input class="rounded pl-4" type="password" name="password" value="adminadmin" required>
             </div>
-            <input type="submit" class="w-40 h-10 bg-slate-400 rounded-md cursor-pointer hover:bg-slate-300 mt-10" value="Login">
+            <input type="submit" class="w-40 h-10 bg-slate-300 rounded-md cursor-pointer hover:bg-slate-200 mt-10 hover:bg-slate-200 hover:text-red-700 shadow-lg shadow-slate-500/40" value="Login">
         </form>
         <p>Don't have an account ? <a class="hover:text-red-700" href="/register">Sign Up</a></p>
     </section>
