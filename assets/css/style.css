@@ -1,17 +1,7 @@
 body {
-    /* font-family: 'Asap', sans-serif;*/
-    /* font-family: 'Merriweather', serif; */
-    /* font-family: 'Mooli', sans-serif;*/
-     /* font-family: 'Roboto', sans-serif;  */
     font-family: 'Roboto Slab', serif;
-    box-sizing: border-box;
 }
 
 .hidden {
     display: none;
 }
-
-/* .arrow {
-    height: 30px;
-    width: 30px;
-}  */

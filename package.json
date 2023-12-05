@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node",
+    "build": "tailwindcss -i assets/css/tailwind.css -o assets/css/output.css --watch",
     "dev": "nodemon index.js",
     "db:create": "psql -U geretathune -f data/create_db.sql",
     "db:seed": "psql -U geretathune -f data/populate_db.sql",
@@ -13,7 +14,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "tailwindcss": "^3.3.6"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
