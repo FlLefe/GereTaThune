@@ -12,16 +12,16 @@
                         <p><%= category.name %></p>
                     </div>
                     <div>
-                        <select class="rounded pl-2" name="type" required>
+                        <select class="inp" name="type" required>
                             <option value="Ponctuelle">Dépense ponctuelle</option>
                             <option value="Mensuelle">Dépense mensuelle</option>
                         </select>
                     </div>
                     <div>
-                        <input class="rounded pl-2" type="number" name="amount" placeholder="Montant" required>
+                        <input class="inp" type="number" name="amount" placeholder="Montant" required>
                     </div>
                     <div>
-                        <input class="rounded pl-2" type="text" name="comment" placeholder="Commentaire">
+                        <input class="inp" type="text" name="comment" placeholder="Commentaire">
                     </div>
                     <div>
                             <select class="w-40" name="category_id" required>
@@ -37,49 +37,49 @@
                   <%}%>
       </div>
 
-    <section class="flex flex-col w-3/5 text-center border-2 m-4 py-4 px-10 rounded-lg bg-slate-200 gap-y-8">
+    <section class="flex flex-col w-4/5 text-center border-2 m-4 py-4 px-10 rounded-lg bg-slate-200 gap-y-8">
       <% for (const operation of movements) {%>
         <% if (operation.categories.length > 0){%>
           <table class="<%= operation.name %>">
             <thead>
               <tr>
-                <th class="border-2 border-black w-3/6 h-8 bg-blue-100" colspan="3"><%= operation.name %>s du mois</th>
+                <th class="border w-3/6 h-8 bg-blue-100" colspan="3"><%= operation.name %>s du mois</th>
                 <th class="w-6"></th>
-                <th class="border-2 border-black w-1/6 h-8 bg-green-100" colspan="1" class="">économie</th>
+                <th class="border w-1/6 h-8 bg-green-100" colspan="1">économie</th>
                 <th class="w-6"></th>
-                <th class="border-2 border-black  w-2/6 h-8 bg-red-100" colspan="2" class=""><%= operation.name %>s du mois précédent</th>
+                <th class="border  w-2/6 h-8 bg-red-100" colspan="2"><%= operation.name %>s du mois précédent</th>
               </tr>
             </thead>
             <tbody>
               <tr class="bg-slate-300">
-                <td class="border-2 border-black w-1/6">Catégorie</td>
-                <td class="border-2 border-black">Mouvements</td>
-                <td class="border-2 border-black">€</td>
+                <td class="border w-1/6">Catégorie</td>
+                <td class="border">Mouvements</td>
+                <td class="border">€</td>
                 <td class="bg-slate-200"></td>
-                <td class="border-2 border-black">€</td>
+                <td class="border">€</td>
                 <td class="bg-slate-200"></td>
-                <td class="border-2 border-black">Catégorie</td>
-                <td class="border-2 border-black">€</td>
+                <td class="border">Catégorie</td>
+                <td class="border">€</td>
               </tr>
               <% for (const category of operation.categories) {%>
                 <tr style="background-color: <%= category.color %>">
-                    <td class="border-2 border-black"><%= category.name %></td>
-                    <td class="border-2 border-black"> <p class="<%= category.name %>" > -> Afficher liste mouvements <- </p>
+                    <td class="border"><%= category.name %></td>
+                    <td class="border"> <p class="<%= category.name %>" > -> + <- </p>
       
                       <ul class=""> <% for (const movement of category.movements) {%>
                       <li><%= movement.type %> -- <%= movement.comment %> -- <%= movement.amount %>€ </li>
                      <%}%> </ul></td>
-                     <td class="border-2 border-black"><% let total = 0; %>
+                     <td class="border"><% let total = 0; %>
                     <%for (const anAmount of category.movements) {%>
                       <% total = (total + anAmount.amount) %>
                     <%}%>
                     <%= total %>
                     </td>
                     <td class="bg-slate-200"></td>
-                    <td class="border-2 border-black bg-transparent">Calcul écart</td>
+                    <td class="border bg-transparent">Calcul écart</td>
                     <td class="bg-slate-200"></td>
-                    <td class="border-2 border-black">Catégorie</td>
-                    <td class="border-2 border-black">€</td>
+                    <td class="border">Catégorie</td>
+                    <td class="border">€</td>
                 </tr>
                 <%}%>
             </tbody>

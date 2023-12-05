@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.border {
+    @apply border-2 border-black;
+}
+
+.underliner {
+    @apply hover:text-red-700 hover:underline hover:underline-offset-8 decoration-2;
+}
+
+.inp {
+    @apply rounded pl-2;
+}
