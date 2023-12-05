@@ -8,28 +8,29 @@ const userController = {
 
     register: async (req, res) => {
         try {
-            const { firstname, lastname, age, email, password } = req.body;
-            const emailVerif = await User.findOne({ where: { email: email } });
+            const { firstname, lastname, birthyear, email, password } = req.body;
+            const emailVerif = await User.findOne({ where: { email: email } });            
 
             if (emailVerif){
                 const error = "Cet email existe deja "
                 return res.render('register', { error });
             }
 
-            await User.create({
+            const newUser = await User.create({
                 email,
                 firstname,
                 lastname,
-                age,
+                birthyear,
                 password: await bcrypt.hash(password, 10),
                 role : 'user',
-            });
+            });            
 
             req.session.user = { 
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
-                age: req.body.age,
-                email: req.body.email,
+                id: newUser.id,
+                firstname: newUser.firstname,
+                lastname: newUser.lastname,
+                birthyear: newUser.birthyear,
+                email: newUser.email,
                 role: 'user' 
             };
             res.redirect('/');

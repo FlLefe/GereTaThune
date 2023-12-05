@@ -8,7 +8,7 @@ CREATE TABLE "user" (
     "password" VARCHAR(128) NOT NULL,
     "firstname" VARCHAR(128) NOT NULL,
     "lastname" VARCHAR(128) NOT NULL,
-    "age" INTEGER NOT NULL,
+    "birthyear" DATE NOT NULL,
     "role" VARCHAR(128) DEFAULT 'user',
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ

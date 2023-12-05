@@ -19,6 +19,9 @@ router.get('/logout', userController.logout);
 router.get('/finance', financeController.index);
 router.post('/finance/add/:id', financeController.addMovement);
 
-router.get('/admin/color', adminController.color);
-router.post('/admin/color', adminController.modifyColor);
+router.get('/admin/categories', adminController.allCategories);
+router.post('/admin/addcategory', adminController.addCategory);
+router.get('/admin/categorymodify/:id', adminController.displayModifyCategory);
+router.post('/admin/categorymodify/:id', adminController.modifyCategory);
+router.get('/admin/categorydelete/:id', adminController.deleteCategory);
 module.exports = router;

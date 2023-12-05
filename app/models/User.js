@@ -22,8 +22,8 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        age: {
-            type: DataTypes.INTEGER,
+        birthyear: {
+            type: DataTypes.DATEONLY,
             allowNull: false,
         },
         role: {

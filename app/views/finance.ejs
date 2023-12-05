@@ -18,10 +18,10 @@
                         </select>
                     </div>
                     <div>
-                        <input class="inp" type="number" name="amount" placeholder="Montant" required>
+                        <input class="inp" type="number" name="amount" placeholder="Montant" min="0" required>
                     </div>
                     <div>
-                        <input class="inp" type="text" name="comment" placeholder="Commentaire">
+                        <input class="inp" type="text" name="comment" placeholder="Commentaire" maxlength="20">
                     </div>
                     <div>
                             <select class="w-40" name="category_id" required>
@@ -87,8 +87,6 @@
           <%}%>
           <%}%>
     </section>
-
-        <script src="/js/finance.js"></script>
 
 </body>
 </html>

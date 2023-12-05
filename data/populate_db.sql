@@ -1,11 +1,11 @@
 BEGIN;
 
-INSERT INTO "user" ("email", "password", "firstname", "lastname", "age", "role")
-VALUES ('Florian@gmail.com', 'florian', 'Florian', 'Lefebvre', '28', 'user'),
-('Guillaume@gmail.com', 'guillaume', 'Guillaume', 'Comparet', '30', 'user'),
-('Matthieu@gmail.com', 'matthieu', 'Matthieu', 'Coutant', '35', 'user'),
-('geretonadmin@gmail.com', 'admin', 'admin', 'goodafternoon', '80', 'admin'),
-('adminflo@gmail.com', '$2b$10$F8OYg.RCb88k36joMTaxN.O274fUWM0ApOaa3/etpdMgl.yT8qQbK', 'flo', 'flo', '30', 'user');
+INSERT INTO "user" ("email", "password", "firstname", "lastname", "birthyear", "role")
+VALUES ('Florian@gmail.com', 'florian', 'Florian', 'Lefebvre', '2000-01-01', 'user'),
+('Guillaume@gmail.com', 'guillaume', 'Guillaume', 'Comparet', '2000-01-01', 'user'),
+('Matthieu@gmail.com', 'matthieu', 'Matthieu', 'Coutant', '2000-01-01', 'user'),
+('geretonadmin@gmail.com', 'admin', 'admin', 'goodafternoon', '2000-01-01', 'admin'),
+('adminflo@gmail.com', '$2b$10$F8OYg.RCb88k36joMTaxN.O274fUWM0ApOaa3/etpdMgl.yT8qQbK', 'flo', 'flo', '2000-01-01', 'user');
 
 INSERT INTO "operation" ("name")
 VALUES ('Débit'),

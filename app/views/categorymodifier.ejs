@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<%- include('partials/nav') %>
+
+<form method="POST">
+    <label for="name">Nom de la catégorie</label>
+    <input type="text" name="name" value="<%= category.name %>">
+
+    <label for="name">Couleur</label>
+    <input type="color" name="color" value="<%= category.color %>">
+
+    <select class="w-40" name="operation_id" required>
+        <option value="1">Débit</option>
+        <option value="2">Crédit</option>
+        <option value="3">Epargne</option>
+    </select>
+
+    <button class="w-20 bg-slate-300 rounded-md hover:bg-slate-200 hover:bg-slate-200 hover:text-red-700 shadow-lg shadow-slate-500/30" type="submit">Valider</button>
+</form>
+
+</body>
+</html>
