@@ -5,7 +5,9 @@ VALUES ('Florian@gmail.com', 'florian', 'Florian', 'Lefebvre', '2000-01-01', 'us
 ('Guillaume@gmail.com', 'guillaume', 'Guillaume', 'Comparet', '2000-01-01', 'user'),
 ('Matthieu@gmail.com', 'matthieu', 'Matthieu', 'Coutant', '2000-01-01', 'user'),
 ('geretonadmin@gmail.com', 'admin', 'admin', 'goodafternoon', '2000-01-01', 'admin'),
-('adminflo@gmail.com', '$2b$10$F8OYg.RCb88k36joMTaxN.O274fUWM0ApOaa3/etpdMgl.yT8qQbK', 'flo', 'flo', '2000-01-01', 'user');
+('admin@gmail.com', '$2b$10$F8OYg.RCb88k36joMTaxN.O274fUWM0ApOaa3/etpdMgl.yT8qQbK', 'admin', 'admin', '2000-01-01', 'admin'),
+('user@gmail.com', '$2b$10$F8OYg.RCb88k36joMTaxN.O274fUWM0ApOaa3/etpdMgl.yT8qQbK', 'user', 'user', '2000-01-01', 'user');
+
 
 INSERT INTO "operation" ("name")
 VALUES ('Débit'),
