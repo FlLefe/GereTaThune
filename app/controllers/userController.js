@@ -35,7 +35,6 @@ const userController = {
             };
             res.redirect('/');
         } catch (error) {
-            console.log(error);
             res.render('register', { error: error.message });
         }
     },
@@ -72,7 +71,6 @@ const userController = {
         res.redirect('/');
 
         } catch (error) {
-            console.error(error.message);
             res.status(500).send('Server Error');
         }
     },

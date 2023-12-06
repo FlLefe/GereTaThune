@@ -2,26 +2,26 @@ const express = require('express');
 const router = express.Router();
 
 const { homeController, userController, financeController, adminController } = require('../controllers');
-const { auth, isAdmin } = require('../../middlewares');
+const { auth, isAdmin, rateLimiter } = require('../../middlewares');
 
 // Page d'accueil
 router.get('/', homeController.index);
 router.get('/cgu', homeController.cgu);
 
 router.get('/register', userController.indexRegister);
-router.post('/register', userController.register);
+router.post('/register',rateLimiter, userController.register);
 
 router.get('/login', userController.indexLogin);
-router.post('/login', userController.login);
+router.post('/login',rateLimiter, userController.login);
 
 router.get('/logout', userController.logout);
 
-router.get('/finance', financeController.index);
-router.post('/finance/add/:id', financeController.addMovement);
+router.get('/finance',auth, financeController.index);
+router.post('/finance/add/:id',auth, financeController.addMovement);
 
-router.get('/admin/categories', adminController.allCategories);
-router.post('/admin/addcategory', adminController.addCategory);
-router.get('/admin/category/edit/:id', adminController.displayModifyCategory);
-router.post('/admin/category/edit/:id', adminController.modifyCategory);
-router.get('/admin/category/delete/:id', adminController.deleteCategory);
+router.get('/admin/categories',auth, isAdmin, adminController.allCategories);
+router.post('/admin/addcategory',auth, isAdmin, adminController.addCategory);
+router.get('/admin/category/edit/:id',auth, isAdmin, adminController.displayModifyCategory);
+router.post('/admin/category/edit/:id',auth, isAdmin, adminController.modifyCategory);
+router.get('/admin/category/delete/:id',auth, isAdmin, adminController.deleteCategory);
 module.exports = router;

@@ -4,10 +4,12 @@
     <% if (locals.user !== null){%>
         <a class="underliner" href="/finance">Mes finances</a>
         <a class="underliner" href="/logout">Se déconnecter</a>
+        <% if (locals.user.role === "admin"){%>    
+            <a class="underliner" href="/admin/categories">Admin</a>
+        <%}%>
         <p><%= locals.user.firstname %></p>
     <%} else {%>
         <a class="underliner" href="/register">S'inscrire</a>
         <a class="underliner" href="/login">Se connecter</a>
-        <a class="underliner" href="/admin/categories">Admin</a>
     <%}%>    
 </nav>

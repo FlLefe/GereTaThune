@@ -30,9 +30,7 @@ const financeController = {
         //     include : 'movements',
         // })
 
-        console.log(JSON.stringify(movements, null, 2))
 
-        // console.log(JSON.stringify(movements, null, 2))
         const categories = await Operation.findAll({
             include: 'categories'
         })
