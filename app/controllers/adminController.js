@@ -6,7 +6,6 @@ const adminController = {
             include: "categories"
         });
 
-        console.log(JSON.stringify(operations, null, 2))
         res.render('adminindex', {operations});
     },
     addCategory: async (req, res) => {
@@ -42,7 +41,6 @@ const adminController = {
     deleteCategory: async (req, res) => {
 
         const categoryid = req.params.id
-        console.log(categoryid)
 
         await Category.destroy({
             where: {

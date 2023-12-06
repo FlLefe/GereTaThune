@@ -4,7 +4,11 @@ module.exports = {
   "./app/views/*.ejs",
   "./app/views/partials/*.ejs"],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        'custom': '220px', // Remplace '200px' par la valeur que tu veux
+      },
+    },
   },
   plugins: [],
 }

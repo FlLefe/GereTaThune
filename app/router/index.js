@@ -21,7 +21,7 @@ router.post('/finance/add/:id', financeController.addMovement);
 
 router.get('/admin/categories', adminController.allCategories);
 router.post('/admin/addcategory', adminController.addCategory);
-router.get('/admin/categorymodify/:id', adminController.displayModifyCategory);
-router.post('/admin/categorymodify/:id', adminController.modifyCategory);
-router.get('/admin/categorydelete/:id', adminController.deleteCategory);
+router.get('/admin/category/edit/:id', adminController.displayModifyCategory);
+router.post('/admin/category/edit/:id', adminController.modifyCategory);
+router.get('/admin/category/delete/:id', adminController.deleteCategory);
 module.exports = router;
