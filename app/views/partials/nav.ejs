@@ -3,6 +3,7 @@
     <a class="underliner" href="/">Accueil</a>
     <% if (locals.user !== null){%>
         <a class="underliner" href="/finance">Mes finances</a>
+        <a class="underliner" href="/finance/monthlyedit">Préférences compte</a>
         <a class="underliner" href="/logout">Se déconnecter</a>
         <% if (locals.user.role === "admin"){%>    
             <a class="underliner" href="/admin/categories">Admin</a>

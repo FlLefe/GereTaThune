@@ -2,107 +2,86 @@
 
 <%- include('partials/nav') %>
 
-    <h1 id="banane" class="text-2xl font-bold text-zinc-700">Bienvenue sur ta gestion financière</h1>
+    <h1 class="text-2xl font-bold text-zinc-700">Bienvenue sur ta gestion financière</h1>
 
-      <div class="container-all w-3/5">
-              <%if(categories){%>
-                <% for (const category of categories){%>
-                <form class="flex py-2 gap-x-2 border-2 m-1 px-4 rounded-lg bg-gray-100" action="/finance/add/<%= category.id %>" method="post">
-                    <div class="w-16">
-                        <p><%= category.name %></p>
-                    </div>
-                    <div>
-                        <select class="inp" name="type" required>
-                            <option value="Ponctuelle">Dépense ponctuelle</option>
-                            <option value="Mensuelle">Dépense mensuelle</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input class="inp" type="number" name="amount" placeholder="Montant" min="0" required>
-                    </div>
-                    <div>
-                        <input class="inp" type="text" name="comment" placeholder="Commentaire" maxlength="20">
-                    </div>
-                    <div>
-                            <select class="w-40" name="category_id" required>
-                                <%for(const catName of category.categories){%>
-                                <option value="<%= catName.id %>" style="background-color: <%= catName.color %>"><%= catName.name %></option>
-                                <%}%>
-                            </select>
-                    </div>
-              
-                    <button class="button-all" type="submit">Ajouter</button>
-                </form>
-                <%}%>
-                  <%}%>
-      </div>
-
-    <section class="container-all w-4/5">
-      <% for (const operation of movements) {%>
-        <% if (operation.categories.length > 0){%>
-          <table class="items <%= operation.name %>">
-            <thead>
-              <tr>
-                <th class="border w-3/6 h-8 bg-blue-100" colspan="3"><%= operation.name %>s du mois</th>
-                <th class="w-6"></th>
-                <th class="border w-1/6 h-8 bg-green-100" colspan="1">économie</th>
-                <th class="w-6"></th>
-                <th class="border  w-2/6 h-8 bg-red-100" colspan="2"><%= operation.name %>s du mois précédent</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="bg-slate-300">
-                <td class="border w-1/6">Catégorie</td>
-                <td class="border">Mouvements</td>
-                <td class="border">€</td>
-                <td class="bg-slate-200"></td>
-                <td class="border">€</td>
-                <td class="bg-slate-200"></td>
-                <td class="border">Catégorie</td>
-                <td class="border">€</td>
-              </tr>
+    <div class="container-all w-3/5">
+        <%if(categories){%>
+          <% for (const category of categories){%>
+          <form class="flex py-2 gap-x-2 border-2 m-1 px-4 rounded-lg bg-gray-100" action="/finance/add/<%= category.id %>" method="post">
+              <div class="w-16">
+                  <p><%= category.name %></p>
+              </div>
               <div>
-                <% for (const category of operation.categories) {%>
-                  <div>
-                    <tr draggable="true" style="background-color: <%= category.color %>">
-                    <td class="border"><%= category.name %></td>
-                    <td class="border"> <p class="<%= category.name %>" > -> + <- </p>
-      
-                      <ul class=""> <% for (const movement of category.movements) {%>
-                      <li><%= movement.type %> -- <%= movement.comment %> -- <%= movement.amount %>€ </li>
-                     <%}%> </ul></td>
-                     <td class="border"><% let total = 0; %>
-                    <%for (const anAmount of category.movements) {%>
-                      <% total = (total + anAmount.amount) %>
-                    <%}%>
-                    <%= total %>
-                    </td>
-                    <td class="bg-slate-200"></td>
-                    <td class="border bg-transparent">Calcul écart</td>
-                    <td class="bg-slate-200"></td>
-                    <td class="border">Catégorie</td>
-                    <td class="border">€</td>
-                </tr>
+                  <select class="inp" name="type" required>
+                      <option value="Ponctuelle">Dépense ponctuelle</option>
+                      <option value="Mensuelle">Dépense mensuelle</option>
+                  </select>
               </div>
-              <%}%>
+              <div>
+                  <input class="inp" type="number" name="amount" placeholder="Montant" min="0" required>
               </div>
-              
-              
-          
-               
-            </tbody>
-          </table>
+              <div>
+                  <input class="inp" type="text" name="comment" placeholder="Commentaire" maxlength="20">
+              </div>
+              <div>
+                      <select class="w-40" name="category_id" required>
+                          <%for(const catName of category.categories){%>
+                          <option value="<%= catName.id %>" style="background-color: <%= catName.color %>"><%= catName.name %></option>
+                          <%}%>
+                      </select>
+              </div>
+        
+              <button class="button-all" type="submit">Ajouter</button>
+          </form>
           <%}%>
-          <%}%>
-    </section>
+            <%}%>
+</div>
 
-    <ul >
-      <li>hohohoh</li>
-      <li>ahaha</li>
-      <li>hihihi</li>
-      <li>ahaha</li> 
-    </ul>
-    <script src="/js/drag.js"></script>
+      <div class="container-all w-4/5">
+        <% for (const operation of movements) {%>
+            <h2><%= operation.name %></h2>
+            <ul class="flex w-full">
+                <li class="w-3/5">
+                    <p><%= operation.name %>s du mois</p>
+                    <ul class="flex">
+                        <li class="w-2/6"><p>Catégorie</p></li>
+                        <li class="w-3/6"><p>Mouvements</p></li>
+                        <li class="w-1/6"><p>€</p></li>
+                    </ul>
+                    <ul class="flex flex-col items">
+                        <% for (const category of operation.categories) {%>
+                        <li style="background-color: <%= category.color %>;" class="flex w-full justify-center p-2 rounded-lg">
+                            <p class="w-2/6 justify-center"><%= category.name %></p>
+                            <ul class="flex flex-col w-3/6 items-start items">
+                                <% for (const movement of category.movements) {%>
+                                    <li class="flex"><p>
+                                    <%= movement.comment %>
+                                    <%= movement.amount %>€</p></li>
+                                <%}%>
+                            </ul>
+                            <p><% let total = 0; %>
+                                <%for (const anAmount of category.movements) {%>
+                                    <% total = (total + anAmount.amount) %>
+                                <%}%>
+                                <%= total %>€</p>
+                        </li>
+                        <%}%>
+                    </ul> 
+                </li>
+                <li class="w-1/5">
+                    <p>Economie</p>
+                    <p>€</p>
+                </li>
+                <li class="w-1/5">
+                    <p><%= operation.name %>s du mois précédent</p>
+                    <p>€</p>
+                    <ul>
+                    </ul>
+                </li>
+            </ul>
+        <%}%>    
+      </div>
+      <script src="/js/drag.js"></script>
 
-</body>
-</html>
+    </body>
+    </html>

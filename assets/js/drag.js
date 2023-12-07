@@ -16,7 +16,8 @@ script.onload = () => {
     // const sortableInstance = new Sortable(document.getElementById('sortable-list'));
     const li = document.querySelectorAll('.items');
     for (const l of li) {
-        const sortable = Sortable.create(l); 
+        const sortable = Sortable.create(l);  
+        
     }
 };
 

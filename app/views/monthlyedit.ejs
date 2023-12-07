@@ -2,7 +2,7 @@
 
 <%- include('partials/nav') %>
 
-    <h1 id="banane" class="text-2xl font-bold text-zinc-700">Bienvenue sur ta gestion financière</h1>
+<h1 id="banane" class="text-2xl font-bold text-zinc-700">Ajouter des mouvements qui se répètent chaque mois</h1>
 
       <div class="container-all w-3/5">
               <%if(categories){%>
@@ -12,10 +12,8 @@
                         <p><%= category.name %></p>
                     </div>
                     <div>
-                        <select class="inp" name="type" required>
-                            <option value="Ponctuelle">Dépense ponctuelle</option>
-                            <option value="Mensuelle">Dépense mensuelle</option>
-                        </select>
+                        <input type="hidden" name="type" value="Mensuelle">
+                        
                     </div>
                     <div>
                         <input class="inp" type="number" name="amount" placeholder="Montant" min="0" required>
@@ -43,9 +41,8 @@
           <table class="w-full" <%= operation.name %>">
             <thead>
               <tr class="w-full">
-                <th class=" w-3/5" colspan="3"><p class="bg-blue-200 w-full h-12 rounded-tl-lg flex justify-center items-center"><%= operation.name %>s du mois</p></th>
-                <th class=" w-1/5" colspan="1"><p class="bg-blue-200 w-full h-12 flex justify-center items-center">Economie</p></th>
-                <th class="  w-1/5" colspan="1"><p class="bg-blue-200 w-full h-12 rounded-tr-xl flex justify-center items-center">Mois précédent</p></th>
+                <th class=" w-3/5" colspan="3"><p class="bg-blue-200 w-full h-12 rounded-tl-lg flex justify-center items-center"><%= operation.name %>s mensuels</p></th>
+                
               </tr>
             </thead>
             <tbody class="items">
@@ -53,8 +50,7 @@
                 <td class="w-2/12 bg-blue-600/10">Catégorie</td>
                 <td class="w-4/12">Mouvements</td>
                 <td class="w-2/12 bg-blue-600/10">Total</td>
-                <td class="w-2/12">€</td>
-                <td class="w-2/12 bg-blue-600/10">Montant</td>
+               
               </tr>
               <% for (const category of operation.categories) {%>
                 <tr style="background-color: <%= category.color %>">
@@ -64,17 +60,16 @@
                       <tr class=" w-full">
                         <td class="flex justify-center" colspan="3"><img src="/img/icons/add.png" alt="plus"></td>
                       </tr>
-
-                        <% for (const movement of category.movements) {%>
-                        <tr class="flex justify-center gap-x-4">
-                          <td class="w-2/12 flex ml-16">
-                            <a class="p-10" href="/edit/<%= movement.id %>"><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></a>
-                            <a href="/delete/<%= movement.id %>"><img  class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
-                          </td>
-                          <td class="w-4/12"><%= movement.comment %></td>
-                          <td class="w-3/12"><%= movement.amount %>€</td>
-                        </tr>
-                        <%}%>
+                      <% for (const movement of category.movements) {%>
+                      <tr class="flex justify-start">
+                        <td class="w-2/12 flex ml-16">
+                          <a class="p-10" href="/edit/<%= movement.id %>"><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></a>
+                          <a href="/delete/<%= movement.id %>"><img  class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
+                        </td>
+                        <td class="w-4/12"><%= movement.comment %></td>
+                        <td class="w-3/12"><%= movement.amount %>€</td>
+                      </tr>
+                    <%}%> 
                     </table>
                     <td class="bg-blue-600/10"><% let total = 0; %>
                   <%for (const anAmount of category.movements) {%>
@@ -82,8 +77,7 @@
                   <%}%>
                   <%= total %>
                   </td>
-                  <td class="">50000€</td>
-                  <td class="bg-blue-600/10">5000€</td>
+                 
                 </tr>
               <%}%>
               
@@ -95,7 +89,6 @@
           <%}%>
           <%}%>
     </section>
-    <script src="/js/drag.js"></script>
 
 </body>
 </html>

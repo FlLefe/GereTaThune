@@ -16,4 +16,8 @@ Pour ce soir :
 
 - Page utilisateur gérer ses mouvements mensuels 
 
+- gérer le fait que n'importe qui puisse supprimer le mouvement de n'importe qui avec une route dynamique 
+
+- Gestion du " e " dans le montant
+
 <!-- Et commencer a essayer de push les drag&drop en BDD -->

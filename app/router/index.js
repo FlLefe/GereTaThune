@@ -17,6 +17,7 @@ router.post('/login',rateLimiter, userController.login);
 router.get('/logout', userController.logout);
 
 router.get('/finance',auth, financeController.index);
+router.get('/finance/monthlyedit',auth, financeController.manageMonthlyMovements);
 router.post('/finance/add/:id',auth, financeController.addMovement);
 
 router.get('/admin/categories',auth, isAdmin, adminController.allCategories);
