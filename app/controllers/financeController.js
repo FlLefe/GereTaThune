@@ -5,16 +5,6 @@ const financeController = {
     index: async (req, res) => {
         
         const idUser = req.session.user.id
-        // const movements = await Operation.findAll({
-        //     include : [{model : Movement, as: "movements",
-        //     include: 'category',
-        //     where : {user_id : idUser}}],
-        //     order: [
-        //         ['movements', 'category_id', 'ASC'],
-        //         ['movements', 'amount', 'DESC']
-        //       ]
-            
-        // })
 
         const movements = await Operation.findAll({
             include : [{model : Category, as: "categories",
@@ -23,13 +13,6 @@ const financeController = {
         }]
             
         })
-
-
-
-        // const movementByCategory = await Category.findAll({
-        //     include : 'movements',
-        // })
-
 
         const categories = await Operation.findAll({
             include: 'categories'

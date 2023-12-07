@@ -24,4 +24,7 @@ router.post('/admin/addcategory',auth, isAdmin, adminController.addCategory);
 router.get('/admin/category/edit/:id',auth, isAdmin, adminController.displayModifyCategory);
 router.post('/admin/category/edit/:id',auth, isAdmin, adminController.modifyCategory);
 router.get('/admin/category/delete/:id',auth, isAdmin, adminController.deleteCategory);
+
+router.get('*', homeController.errorPage);
+
 module.exports = router;

@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node",
     "build": "tailwindcss -i assets/css/tailwind.css -o assets/css/output.css --watch",
+    "buildvite": "vite build",
+    "devvite": "vite",
     "dev": "nodemon index.js",
     "db:create": "psql -U geretathune -f data/create_db.sql",
     "db:seed": "psql -U geretathune -f data/populate_db.sql",
@@ -27,4 +29,5 @@
     "pg": "^8.11.3",
     "sequelize": "^6.35.1"
   }
-}
+}  
+

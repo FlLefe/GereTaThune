@@ -1,9 +1,12 @@
 const homeController = {
-    index: async (req, res) => {
+    index (req, res){
         res.render('home');
     },
-    cgu: async (req, res) => {
+    cgu (req, res){
         res.render('cgu');
+    },
+    errorPage (req,res){
+        res.redirect('/');
     }
 };
 
