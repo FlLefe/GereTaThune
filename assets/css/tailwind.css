@@ -15,7 +15,7 @@
 }
 
 .button-all {
-    @apply w-40 h-9 bg-slate-300 rounded-md cursor-pointer hover:bg-slate-200 hover:text-red-700 shadow-lg shadow-slate-500/40
+    @apply w-60 h-9 bg-slate-300 rounded-md cursor-pointer hover:bg-slate-200 hover:text-red-700 shadow-lg shadow-slate-500/40
 }
 
 .container-all {
