@@ -13,7 +13,7 @@ const financeController = {
         }]
             
         })
-
+        //A
         const categories = await Operation.findAll({
             include: 'categories'
         })
