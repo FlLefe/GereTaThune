@@ -8,7 +8,7 @@ const financeController = {
 
         const movements = await Operation.findAll({
             include : [{model : Category, as: "categories",
-            include: [{model : Movement, as :'movements', where : {user_id : idUser}
+            include: [{model : Movement, as :'movements', where : {user_id : idUser, type : 'Actif'}
             }]
         }]
             
@@ -31,6 +31,13 @@ const financeController = {
 
         await Movement.create({type, amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
 
+        if(type === "Model"){
+            type = "Actif"
+            await Movement.create({type, amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
+        }
+
+        
+
         res.redirect('/finance');
     },
     manageMonthlyMovements: async (req, res) => {
@@ -39,7 +46,7 @@ const financeController = {
 
         const movements = await Operation.findAll({
             include : [{model : Category, as: "categories",
-            include: [{model : Movement, as :'movements', where : {user_id : idUser, type : 'Mensuelle'},
+            include: [{model : Movement, as :'movements', where : {user_id : idUser, type : 'Model'},
             }]
         }]
             
@@ -52,6 +59,21 @@ const financeController = {
         })
         res.render('monthlyedit', { movements, categories });
     },
+    createMovementsByMonthly: async (req, res) => {
+        
+        const idUser = req.session.user.id
+
+        const movements = await Movement.findAll({
+            where : {user_id : idUser, type : 'Model'}
+        })
+
+        for (const movement of movements) {
+            movement.type = "Actif"
+            await Movement.create({type : movement.type, amount : movement.amount, comment : movement.comment, category_id : movement.category_id, operation_id : movement.operation_id, user_id : movement.user_id});
+        }
+
+        res.redirect('/finance');
+    }
 };
 
 module.exports = financeController;
