@@ -60,7 +60,7 @@
                       <tr class=" w-full">
                         <td class="flex justify-center" colspan="3"><img src="/img/icons/add.png" alt="plus"></td>
                       </tr>
-                      <% for (const movement of category.movements) {%>
+                      <% for (const movement of category.monthlymodels) {%>
                       <tr class="flex justify-start">
                         <td class="w-2/12 flex ml-16">
                           <a class="p-10" href="/edit/<%= movement.id %>"><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></a>
@@ -72,7 +72,7 @@
                     <%}%> 
                     </table>
                     <td class="bg-blue-600/10"><% let total = 0; %>
-                  <%for (const anAmount of category.movements) {%>
+                  <%for (const anAmount of category.monthlymodels) {%>
                     <% total = (total + anAmount.amount) %>
                   <%}%>
                   <%= total %>

@@ -1,4 +1,4 @@
-const { Movement, Operation, Category } = require('../models')
+const { Movement, Operation, Category, Monthlymodel } = require('../models')
 
 const financeController = {
     
@@ -8,7 +8,7 @@ const financeController = {
 
         const movements = await Operation.findAll({
             include : [{model : Category, as: "categories",
-            include: [{model : Movement, as :'movements', where : {user_id : idUser, type : 'Actif'}
+            include: [{model : Movement, as :'movements', where : {user_id : idUser}
             }]
         }]
             
@@ -29,11 +29,11 @@ const financeController = {
             comment = "Divers"
         }
 
-        await Movement.create({type, amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
+        await Movement.create({amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
 
         if(type === "Model"){
-            type = "Actif"
-            await Movement.create({type, amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
+            
+            await Monthlymodel.create({amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
         }
 
         
@@ -46,7 +46,7 @@ const financeController = {
 
         const movements = await Operation.findAll({
             include : [{model : Category, as: "categories",
-            include: [{model : Movement, as :'movements', where : {user_id : idUser, type : 'Model'},
+            include: [{model : Monthlymodel, as :'monthlymodels', where : {user_id : idUser},
             }]
         }]
             
@@ -63,13 +63,13 @@ const financeController = {
         
         const idUser = req.session.user.id
 
-        const movements = await Movement.findAll({
-            where : {user_id : idUser, type : 'Model'}
+        const movements = await Monthlymodel.findAll({
+            where : {user_id : idUser}
         })
 
         for (const movement of movements) {
-            movement.type = "Actif"
-            await Movement.create({type : movement.type, amount : movement.amount, comment : movement.comment, category_id : movement.category_id, operation_id : movement.operation_id, user_id : movement.user_id});
+            
+            await Movement.create({amount : movement.amount, comment : movement.comment, category_id : movement.category_id, operation_id : movement.operation_id, user_id : movement.user_id});
         }
 
         res.redirect('/finance');
