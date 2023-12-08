@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="/img/favicon.ico"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300;1,400;1,700;1,800;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mooli&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/output.css">
+    <title>Document</title>
+</head>
+
+<body class="flex flex-col items-center w-screen bg-zinc-100">
+<img class="w-28 rounded-lg absolute left-32 top-10" src="/img/GereTaThune_logo.PNG" alt="logo">
+
+<nav class="flex justify-center items-center w-1/2 h-20 my-8 bg-gradient-to-r from-slate-300 to-slate-200 shadow-lg shadow-slate-500/50 rounded-lg gap-8 box-border overflow-hidden">
+    
+    <a class="underliner" href="/">Accueil</a>
+    <% if (locals.user !== null){%>
+        <a class="underliner" href="/finance">Mes finances</a>
+        <a class="underliner" href="/finance/monthlyedit">Préférences compte</a>
+        <a class="underliner" href="/logout">Se déconnecter</a>
+        <% if (locals.user.role === "admin"){%>    
+            <a class="underliner" href="/admin/categories">Admin</a>
+        <%}%>
+        <p><%= locals.user.firstname %></p>
+    <%} else {%>
+        <a class="underliner" href="/register">S'inscrire</a>
+        <a class="underliner" href="/login">Se connecter</a>
+    <%}%>    
+</nav>
+
+<h1 class="text-2xl font-bold text-zinc-700">Bienvenue sur GereTaThune !</h1>
+
+</body>
+</html>

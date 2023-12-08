@@ -31,13 +31,13 @@ const financeController = {
             comment = "Divers"
         }
 
-        await Movement.create({type, amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
+       const newMovement = await Movement.create({type, amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
 
         if(type === "Mensuelle"){
             
             await Monthlymodel.create({type, amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
         }
-        res.redirect('/finance');
+        res.status(201).json(newMovement);
     },
     addMonthlyModel: async (req, res) => {
         const { id } = req.params
@@ -47,9 +47,9 @@ const financeController = {
             comment = "Divers"
         }
 
-        await Monthlymodel.create({ amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
+       const newMonthlyModel = await Monthlymodel.create({ amount, comment, category_id, operation_id:id, user_id : req.session.user.id });
 
-        res.redirect('/finance/monthlyedit');
+       res.status(201).json(newMonthlyModel);
     },
 
     deleteOneMovement: async (req, res) => {
@@ -107,9 +107,9 @@ const financeController = {
             movement.category_id = category_id;
           }  
     
-          await card.save();
+          await movement.save();
     
-          res.status(200).json(card);
+          res.status(200).json(movement);
     
         }catch (error){
           console.error(error);

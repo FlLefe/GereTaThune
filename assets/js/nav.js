@@ -1,6 +1,6 @@
 const nav = document.getElementById('nav');
 const content = document.createElement('div');
-let data = null
+let data = document.cookie
 
 const fetchData = async () => {
     try {

@@ -11,6 +11,8 @@ router.get('/cgu', homeController.cgu);
 router.get('/register', userController.indexRegister);
 router.post('/register',rateLimiter, userController.register);
 
+router.get('/session', userController.session);
+
 router.get('/login', userController.indexLogin);
 router.post('/login',rateLimiter, userController.login);
 
