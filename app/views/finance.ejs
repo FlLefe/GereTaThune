@@ -6,97 +6,101 @@
 
     <h1 id="banane" class="text-2xl font-bold text-zinc-700">Bienvenue sur ta gestion financière</h1>
 
-      <div class="container-all w-3/5">
-              <%if(categories){%>
-                <% for (const category of categories){%>
-                <form class="flex py-2 gap-x-2 border-2 m-1 px-4 rounded-lg bg-gray-100" action="/finance/add/<%= category.id %>" method="post">
-                    <div class="w-16">
-                        <p><%= category.name %></p>
-                    </div>
-                    <div>
-                        <select class="inp" name="type" required>
-                            <option value="Actif">Dépense ponctuelle</option>
-                            <option value="Model">Dépense mensuelle</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input class="inp" type="number" name="amount" placeholder="Montant" min="0" required>
-                    </div>
-                    <div>
-                        <input class="inp" type="text" name="comment" placeholder="Commentaire" maxlength="20">
-                    </div>
-                    <div>
-                            <select class="w-40" name="category_id" required>
-                                <%for(const catName of category.categories){%>
-                                <option value="<%= catName.id %>" style="background-color: <%= catName.color %>"><%= catName.name %></option>
-                                <%}%>
-                            </select>
-                    </div>
-              
-                    <button class="button-all" type="submit">Ajouter</button>
-                </form>
-                <%}%>
-                  <%}%>
-      </div>
+    <div class="container-all w-full md:w-4/5 box-border">
+      <% if(categories) { %>
+          <% for (const category of categories) { %>
+              <form class="flex flex-col w-4/5 items-center justify-center md:flex-row py-2 gap-2 border-2 m-1 px-4 rounded-lg bg-gray-100" action="/finance/add/<%= category.id %>" method="post">
+                  <div class="w-full md:w-16 mb-2 md:mb-0">
+                      <p class="md:text-center"><%= category.name %></p>
+                  </div>
+                  <div class="w-full md:w-24">
+                      <select class="inp w-full md:w-24" name="type" required>
+                          <option value="Ponctuelle">Ponctuelle</option>
+                          <option value="Mensuelle">Mensuelle</option>
+                      </select>
+                  </div>
+                  <div class="w-full md:w-24">
+                      <input class="inp w-full md:w-24" type="number" name="amount" placeholder="Montant" min="0" required>
+                  </div>
+                  <div class="w-full md:w-24">
+                      <input class="inp w-full md:w-24" type="text" name="comment" placeholder="Commentaire" maxlength="20">
+                  </div>
+                  <div class="w-full md:w-40">
+                      <select class="w-full" name="category_id" required>
+                          <% for(const catName of category.categories) { %>
+                              <option value="<%= catName.id %>" style="background-color: <%= catName.color %>"><%= catName.name %></option>
+                          <% } %>
+                      </select>
+                  </div>
+                  <button class="button-all md:w-40 md:mt-0" type="submit">Ajouter</button>
+              </form>
+          <% } %>
+      <% } %>
+  </div>
 
-    <section class="flex flex-col gap-6 text-center m-4 p-16 rounded-lg bg-slate-200 box-border w-4/5">
-      <% for (const operation of movements) {%>
-        <% if (operation.categories.length > 0){%>
-          <table class="w-full" <%= operation.name %>">
-            <thead>
-              <tr class="w-full">
-                <th class=" w-3/5" colspan="3"><p class="bg-blue-200 w-full h-12 rounded-tl-lg flex justify-center items-center"><%= operation.name %>s du mois</p></th>
-                <th class=" w-1/5" colspan="1"><p class="bg-blue-200 w-full h-12 flex justify-center items-center">Economie</p></th>
-                <th class="  w-1/5" colspan="1"><p class="bg-blue-200 w-full h-12 rounded-tr-xl flex justify-center items-center">Mois précédent</p></th>
-              </tr>
-            </thead>
-            <tbody class="items">
-              <tr class="bg-slate-300">
-                <td class="w-2/12 bg-blue-600/10">Catégorie</td>
-                <td class="w-4/12">Mouvements</td>
-                <td class="w-2/12 bg-blue-600/10">Total</td>
-                <td class="w-2/12">€</td>
-                <td class="w-2/12 bg-blue-600/10">Montant</td>
-              </tr>
-              <% for (const category of operation.categories) {%>
-                <tr style="background-color: <%= category.color %>">
-                  <td class="bg-blue-600/10"><%= category.name %></td>
-                  <td class=""> 
-                    <table class="items w-full">
-                      <tr class=" w-full">
-                        <td class="flex justify-center" colspan="3"><img src="/img/icons/add.png" alt="plus"></td>
-                      </tr>
 
-                        <% for (const movement of category.movements) {%>
-                        <tr class="flex justify-center gap-x-4">
-                          <td class="w-2/12 flex ml-16">
-                            <a class="p-10" href="/edit/<%= movement.id %>"><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></a>
-                            <a href="/delete/<%= movement.id %>"><img  class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
-                          </td>
-                          <td class="w-4/12"><%= movement.comment %></td>
-                          <td class="w-3/12"><%= movement.amount %>€</td>
+  <section class="flex flex-col gap-6 text-center m-4 p-4 md:p-8 lg:p-16 rounded-lg bg-slate-200 box-border w-full md:w-4/5 overflow-x-auto">
+    <% for (const operation of movements) { %>
+        <% if (operation.categories.length > 0) { %>
+            <table class="w-full">
+                <thead>
+                    <tr class="w-full">
+                        <th class="w-2/5 md:w-3/5" colspan="3">
+                            <p class="bg-blue-200 w-full h-12 rounded-tl-lg flex justify-center items-center"><%= operation.name %>s du mois</p>
+                        </th>
+                        <th class="w-1/5">
+                            <p class="bg-blue-200 w-full h-12 flex justify-center items-center">Economie</p>
+                        </th>
+                        <th class="w-1/5">
+                            <p class="bg-blue-200 w-full h-12 rounded-tr-xl flex justify-center items-center">Mois précédent</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="items">
+                    <tr class="bg-slate-300">
+                        <td class="w-2/12 bg-blue-600/10">Catégorie</td>
+                        <td class="w-4/12">Mouvements</td>
+                        <td class="w-2/12 bg-blue-600/10">Total</td>
+                        <td class="w-2/12">€</td>
+                        <td class="w-2/12 bg-blue-600/10">Montant</td>
+                    </tr>
+                    <% for (const category of operation.categories) { %>
+                        <tr style="background-color: <%= category.color %>">
+                            <td class="bg-blue-600/10"><%= category.name %></td>
+                            <td class="">
+                                <table class="items w-full">
+                                    <tr class="w-full">
+                                        <td class="flex justify-center" colspan="3"><img src="/img/icons/add.png" alt="plus"></td>
+                                    </tr>
+                                    <% for (const movement of category.movements) { %>
+                                        <tr class="flex justify-center gap-x-4">
+                                            <td class="w-2/12 flex ml-4 items-center">
+                                                <a href="/edit/<%= movement.id %>"><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></a>
+                                                <a href="/delete/<%= movement.id %>"><img class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
+                                            </td>
+                                            <td class="w-4/12"><%= movement.comment %></td>
+                                            <td class="w-3/12"><%= movement.amount %>€</td>
+                                        </tr>
+                                    <% } %>
+                                </table>
+                            </td>
+                            <td class="bg-blue-600/10">
+                                <% let total = 0; %>
+                                <% for (const anAmount of category.movements) { %>
+                                    <% total = (total + anAmount.amount) %>
+                                <% } %>
+                                <%= total %>
+                            </td>
+                            <td class="w-2/12">50000€</td>
+                            <td class="bg-blue-600/10 w-2/12">5000€</td>
                         </tr>
-                        <%}%>
-                    </table>
-                    <td class="bg-blue-600/10"><% let total = 0; %>
-                  <%for (const anAmount of category.movements) {%>
-                    <% total = (total + anAmount.amount) %>
-                  <%}%>
-                  <%= total %>
-                  </td>
-                  <td class="">50000€</td>
-                  <td class="bg-blue-600/10">5000€</td>
-                </tr>
-              <%}%>
-              
-              
-          
-               
-            </tbody>
-          </table>
-          <%}%>
-          <%}%>
-    </section>
+                    <% } %>
+                </tbody>
+            </table>
+        <% } %>
+    <% } %>
+</section>
+
     <script src="/js/drag.js"></script>
 
 </body>
