@@ -34,9 +34,44 @@
                   </div>
                   <button class="button-all md:w-40 md:mt-0" type="submit">Ajouter</button>
               </form>
-          <% } %>
+          <%}%>
       <% } %>
   </div>
+
+<div class="modal fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center hidden" id="edit-movement-modal">
+    <div class="bg-white p-8 max-w-md mx-auto rounded shadow-lg">
+        <form>
+        <div class="modal-movement-head">
+            <p class="modal-movement-title">Modifier un mouvement</p>
+            <button class="delete close" type="button-all" aria-label="close"></button>
+        </div>
+
+        <div class="modal-movement-body">
+            <div>
+                <label class="label" for="category">Catégorie :</label>
+                <select name="category_id">
+                    <option selected disabled slot="default-option"></option>
+                    <% for (const catName of categories[0].categories) {%>
+                        <option value="<%= catName.id %>" style="background-color: <%= catName.color %>"><%= catName.name %></option>
+                    <%}%>
+                </select>
+            </div>
+            <div>
+                <label for="amount">Montant</label>
+                <input type="number" min="0" name="amount">
+            </div>
+            <label for="comment">Commentaire</label>
+            <input type="text" name="comment" maxlength="20">
+        </div>
+
+        <div class="modal-movement-foot">
+            <button class="button is-success">Modifier</button>
+            <button class="button close" type="button">Annuler</button>
+        </div>
+        </form>
+    </div>
+</div>
+
 
 
   <section class="flex flex-col gap-6 text-center m-4 p-4 md:p-8 lg:p-16 rounded-lg bg-slate-200 box-border w-full md:w-4/5 overflow-x-auto">
@@ -75,8 +110,13 @@
                                     <% for (const movement of category.movements) { %>
                                         <tr class="flex justify-center gap-x-4">
                                             <td class="w-2/12 flex ml-4 items-center">
-                                                <a href="/edit/<%= movement.id %>"><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></a>
-                                                <a href="/delete/<%= movement.id %>"><img class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
+                                                <p class="edit-movement" 
+                                                    data-movement="<%= movement.id %>"
+                                                    data-movementAmount="<%= movement.amount %>"
+                                                    data-movementAmount="<%= movement.comment %>"
+                                                    data-movementAmount="<%= movement.operation_id %>"
+                                                ><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></p>
+                                                <a href="/finance/delete/<%= movement.id %>"><img class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
                                             </td>
                                             <td class="w-4/12"><%= movement.comment %></td>
                                             <td class="w-3/12"><%= movement.amount %>€</td>
@@ -102,6 +142,7 @@
 </section>
 
     <script src="/js/drag.js"></script>
+    <script src="/js/finance.js"></script>
 
 </body>
 </html>

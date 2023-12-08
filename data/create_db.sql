@@ -32,7 +32,6 @@ CREATE TABLE "category" (
 
 CREATE TABLE "movement" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-
     "amount" FLOAT NOT NULL,
     "comment" VARCHAR(128) NOT NULL DEFAULT 'Divers',
     "operation_id" INTEGER REFERENCES operation("id"),

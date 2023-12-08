@@ -2,12 +2,12 @@
 
 <%- include('partials/nav') %>
 
-<h1 id="banane" class="text-2xl font-bold text-zinc-700">Ajouter des mouvements qui se répètent chaque mois</h1>
+<h1  class="text-2xl font-bold text-zinc-700">Ajouter des mouvements qui se répètent chaque mois</h1>
 
       <div class="container-all w-3/5">
               <%if(categories){%>
                 <% for (const category of categories){%>
-                <form class="flex py-2 gap-x-2 border-2 m-1 px-4 rounded-lg bg-gray-100" action="/finance/add/<%= category.id %>" method="post">
+                <form class="flex py-2 gap-x-2 border-2 m-1 px-4 rounded-lg bg-gray-100" action="/finance/monthlyadd/<%= category.id %>" method="post">
                     <div class="w-16">
                         <p><%= category.name %></p>
                     </div>
@@ -64,7 +64,7 @@
                       <tr class="flex justify-start">
                         <td class="w-2/12 flex ml-16">
                           <a class="p-10" href="/edit/<%= movement.id %>"><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></a>
-                          <a href="/delete/<%= movement.id %>"><img  class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
+                          <a href="/finance/delete/<%= movement.id %>"><img  class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
                         </td>
                         <td class="w-4/12"><%= movement.comment %></td>
                         <td class="w-3/12"><%= movement.amount %>€</td>

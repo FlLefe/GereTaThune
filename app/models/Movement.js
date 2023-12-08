@@ -4,7 +4,10 @@ const sequelize = require('../database');
 class Movement extends Sequelize.Model {}
 
 Movement.init(
-    {
+    {   type: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+        },
         amount: {
             type: DataTypes.FLOAT,
             allowNull: false
