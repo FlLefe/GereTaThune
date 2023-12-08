@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS "user", "operation", "category", "movement";
+DROP TABLE IF EXISTS "user", "operation", "category", "movement", "monthlymodel";
 
 CREATE TABLE "user" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -32,8 +32,20 @@ CREATE TABLE "category" (
 
 CREATE TABLE "movement" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+
+    "amount" FLOAT NOT NULL,
+    "comment" VARCHAR(128) NOT NULL DEFAULT 'Divers',
+    "operation_id" INTEGER REFERENCES operation("id"),
+    "category_id" INTEGER REFERENCES category("id"),
+    "user_id" INTEGER REFERENCES "user"("id"),
     "type" VARCHAR(128) NOT NULL,
     CONSTRAINT check_type CHECK (type IN ('Ponctuelle', 'Mensuelle')),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ
+);
+
+CREATE TABLE "monthlymodel" (
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "amount" FLOAT NOT NULL,
     "comment" VARCHAR(128) NOT NULL DEFAULT 'Divers',
     "operation_id" INTEGER REFERENCES operation("id"),

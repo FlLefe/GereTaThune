@@ -2,6 +2,7 @@ const User = require('./User');
 const Movement = require('./Movement');
 const Operation = require('./Operation');
 const Category = require('./Category');
+const Monthlymodel = require('./Monthlymodel');
 
 // Associations User - Movement
 User.hasMany(Movement, {
@@ -44,4 +45,38 @@ Category.belongsTo(Operation, {
     as: 'operation'
 });
 
-module.exports = { User, Movement, Operation, Category };
+// test models
+
+
+// Associations User - Monthlymodel
+User.hasMany(Monthlymodel, {
+    foreignKey: 'user_id',
+    as: 'monthlymodels',
+});
+Monthlymodel.belongsTo(User, {
+    foreignKey: 'user_id',
+    as: 'user',
+});
+
+// Assocations Movement - Operation
+Operation.hasMany(Monthlymodel,{
+    foreignKey: 'operation_id',
+    as: 'monthlymodels'
+})
+Monthlymodel.belongsTo(Operation, {
+    foreignKey: 'operation_id',
+    as: 'operation'
+});
+
+
+// Assocations monthlymodel - Category
+Category.hasMany(Monthlymodel,{
+    foreignKey: 'category_id',
+    as: 'monthlymodels'
+})
+Monthlymodel.belongsTo(Category, {
+    foreignKey: 'category_id',
+    as: 'category'
+});
+
+module.exports = { User, Movement, Operation, Category, Monthlymodel };

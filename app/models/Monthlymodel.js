@@ -1,9 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
-class Movement extends Sequelize.Model {}
+class Monthlymodel extends Sequelize.Model {}
 
-Movement.init(
+Monthlymodel.init(
     {
         amount: {
             type: DataTypes.FLOAT,
@@ -28,8 +28,8 @@ Movement.init(
     },
     {
         sequelize,
-        tableName: 'movement',
+        tableName: 'monthlymodel',
     }
 );
 
-module.exports = Movement;
+module.exports = Monthlymodel;
