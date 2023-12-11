@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/favicon.ico"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300;1,400;1,700;1,800;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mooli&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/output.css">
     <title>Document</title>
 </head>
-<body>
-    <nav id="nav"><a href="../html/home.html">Accueil</a></nav>
-    
-    <h1>Register Page</h1>
 
-    <section class="container mt-5 mb-5">
-        <% if (locals.error) { %>
-            <div class="alert alert-danger">
-                <p class="text-danger"><%= error %> </p>
+<body class="flex flex-col items-center w-screen bg-zinc-100">
+<img class="w-28 rounded-lg absolute left-32 top-10" src="/assets/img/GereTaThune_logo.PNG" alt="logo">
+
+<nav class="flex justify-center items-center w-1/2 h-20 my-8 bg-gradient-to-r from-slate-300 to-slate-200 shadow-lg shadow-slate-500/50 rounded-lg gap-8 box-border overflow-hidden">
+    
+    <a class="underliner" href="/">Accueil</a>
+    
+        <a class="underliner" href="/assets/html/finance.html">Mes finances</a>
+        <a class="underliner" href="/finance/monthlyedit">Préférences compte</a>
+        <a class="underliner" href="/logout">Se déconnecter</a>
+       
+   
+        <a class="underliner" href="/assets/html/register.html">S'inscrire</a>
+        <a class="underliner" href="/assets/html/login.html">Se connecter</a>
+   
+</nav>
+    
+    <h1 class="text-2xl font-bold text-zinc-700">Register Page</h1>
+
+    <section class="container-all">
+        <form  method="POST" action="/register">
+            <div class="flex flex-col gap-4 text-end py-8">
+                <div>
+                    <label for="firstname">Votre prénom : </label>
+                    <input class="inp" type="text" name="firstname" required>
+                </div>
+                <div>
+                    <label for="lastname">Votre nom : </label>
+                    <input class="inp" type="text" name="lastname" required>
+                </div>
+                <div>
+                    <label for="birthyear">Votre age : </label>
+                    <input class="inp w-custom" type="date" name="birthyear" required>
+                </div>
+                <div>
+                    <label for="email">Adresse mail : </label>
+                    <input class="inp" type="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Mot de passe : </label>
+                    <input class="inp" type="password" name="password" required>
+                </div>
+                <div>
+                    <label for="password">Confirmer mot de passe : </label>
+                    <input class="inp" type="password" name="passwordConfirm"required>
+                </div>
+                <div class="text-center">
+                    <label for="cgu"><a href="/cgu" target="_blank">CGU</a></label>
+                    <input class="inp" type="checkbox" name="cgu" id="cgu" required>
+                </div>
             </div>
-        <% } %>
-        <h1 class="large text-primary">Sign Up</h1>
-        <p class="lead"><i class="fas fa-user"></i> Create Your Account</p>
-        <form class="form" method="POST" action="/register">
-            <div class="form-group">
-                <input type="text" placeholder="Votre prénom" name="firstname" />
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Votre nom" name="lastname" />
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Votre age" name="age" />
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email Address" name="email" />
-            </div>
-            <div class="form-group">
-                <input type="password" placeholder="Password" name="password" />
-            </div>
-            <div class="form-group">
-                <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    name="passwordConfirm"
-                />
-            </div>
-            <label for="cgu"><a href="/cgu" target="_blank">CGU</a></label>
-            <input type="checkbox" name="cgu" id="cgu" required>
-            <input type="submit" class="btn btn-primary" value="Register" />
+            <input type="submit" class="button-all" value="Register" />
         </form>
-        <p class="my-1">Already have an account? <a href="/login">Sign In</a></p>
+        <p>Already have an account ? <a class="hover:text-red-700" href="/login">Sign In</a></p>
     </section>
-    <script src="../js/nav.js"></script>
 </body>
 </html>

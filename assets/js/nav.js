@@ -1,34 +1,31 @@
-const nav = document.getElementById('nav');
-const content = document.createElement('div');
-let data = document.cookie
+import api from './api.js';
 
-const fetchData = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/session'); 
+const nav = {
 
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP : ${response.status}`);
-      }
-      
-      if (response.length > 0) {
-        data = await response.json();
-      }
+    async fetchSessionData () {
 
-      if (data != null) {
-        content.innerHTML = `
-            <a href="../html/finance.html">Mes finances</a>
-            <a href="/logout">Se déconnecter</a>
-            <p>${data.firstname}</p>`;
-    } else {
-        content.innerHTML = `
-            <a href="../html/register.html">S'inscrire</a>
-            <a href="../html/login.html">Se connecter</a>`;
-    }
-    } catch (error) {
-      console.error('Erreur lors de la récupération des données :', error);
+        try {
+          const navDom = document.getElementById('nav');
+          const content = document.createElement('div');
+          const sessionResponse = await api.isConnect();
+    
+          if (sessionResponse) {
+            content.innerHTML = `
+                <a class="underliner" href="../html/finance.html">Mes finances</a>
+                <a class="underliner" href="/logout">Se déconnecter</a>
+                <p>${sessionResponse.firstname}</p>`;
+        } else {
+            content.innerHTML = `
+                <a class="underliner" href="/assets/html/register.html">S'inscrire</a>
+                <a class="underliner" href="/assets/html/login.html">Se connecter</a>`;
+        }
+    
+        navDom.append(content);
+        
+        } catch (error) {
+          console.error('Erreur lors de la récupération des données :', error);
+        }
     }
 };
 
-fetchData();
-
-nav.append(content);
+export default nav;

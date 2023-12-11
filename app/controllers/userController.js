@@ -53,13 +53,11 @@ const userController = {
                 email: email,
                 },
             });
-            console.log('coucou >>' );
             
         if (!foundUser){
             error = "Utilisateur ou mot de passe incorrect";
             return res.render('login', { error });
         }
-        console.log('coucou2 >>');
 
         const passwordOk = await bcrypt.compare(password, foundUser.password);
 
@@ -67,17 +65,14 @@ const userController = {
             error = "Utilisateur ou mot de passe incorrect";
             return res.render('login', { error });
         }
-        console.log('coucou3 >>');
 
-        foundUser.password ="";
+        foundUser.password = "";
         console.log('foundUser >>' + JSON.stringify(foundUser,null,2));
         
-        console.log('coucou4 >>'+ req.session.user);
-
-        
-
         req.session.user = foundUser;
-        res.json({ message: 'Connecté avec succès' });
+        
+        console.log('coucou4 >>'+ JSON.stringify(req.session.user));
+        res.status(201).json(foundUser);
         } catch (error) {
             res.status(500).send('Server Error');
         }
@@ -85,8 +80,10 @@ const userController = {
 
     session: async (req, res) => {
         try {
-            // const sessionData = {oui:'oui'}
-            res.json({ message: 'Accès autorisé', user: req.session.user });
+            const sessionData = req.session.user;
+
+            console.log(sessionData);
+            res.json(sessionData);
         } catch (error) {
             res.status(500).send('Server Error');
         }

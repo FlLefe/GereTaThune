@@ -1,41 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" type="image/ico" href="/img/favicon.ico"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300;1,400;1,700;1,800;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mooli&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/output.css">
     <title>Document</title>
 </head>
-<body>
-    <nav id="nav"><a href="../html/home.html">Accueil</a></nav>
 
-    <h1>Bienvenue sur ta gestion financière</h1>
+<body class="flex flex-col items-center w-screen bg-zinc-100">
+<img class="w-28 rounded-lg absolute left-32 top-10" src="/img/GereTaThune_logo.PNG" alt="logo">
 
-  <form class="text-center container d-flex flex-column" method="post">
-    <div>
-        <label for="email">Type :</label>
-        <input type="text" name="type" placeholder="" required>
-    </div>
-    <div>
-        <label for="password">Amount</label>
-        <input type="password" name="amount" placeholder="" required>
-    </div>
-    <div>
-        <label for="lastname">category_id</label>
-        <input type="text" name="category_id" placeholder="lastname" required>
-    </div>
-    <div>
-        <label for="firstname">operation_id</label>
-        <input type="text" name="operation_id" placeholder="firstname" required>
-    </div>
+<nav id="nav" class="flex justify-center items-center w-1/2 h-20 my-8 bg-gradient-to-r from-slate-300 to-slate-200 shadow-lg shadow-slate-500/50 rounded-lg gap-8 box-border overflow-hidden">
     
-    <button type="submit">Créer un compte</button>
-  </form>
-  
-  <script src="../js/nav.js"></script>
+    <a class="underliner" href="/">Accueil</a>
+   
+  </nav>
+
+  <a style="padding: 10px; border-radius: 10px; border: 1px solid black; background-color: chocolate;" href="/finance/addmonthly">Ajouter les modeles mensuels</a>
+
+    <h1 id="banane" class="text-2xl font-bold text-zinc-700">Bienvenue sur ta gestion financière</h1>
+
+    <div class="container-all w-full md:w-4/5 box-border">
+      <% if(categories) { %>
+          <% for (const category of categories) { %>
+              <form class="flex flex-col w-4/5 items-center justify-center md:flex-row py-2 gap-2 border-2 m-1 px-4 rounded-lg bg-gray-100" action="/finance/add/<%= category.id %>" method="post">
+                  <div class="w-full md:w-16 mb-2 md:mb-0">
+                      <p class="md:text-center"><%= category.name %></p>
+                  </div>
+                  <div class="w-full md:w-24">
+                      <select class="inp w-full md:w-24" name="type" required>
+                          <option value="Ponctuelle">Ponctuelle</option>
+                          <option value="Mensuelle">Mensuelle</option>
+                      </select>
+                  </div>
+                  <div class="w-full md:w-24">
+                      <input class="inp w-full md:w-24" type="number" name="amount" placeholder="Montant" min="0" required>
+                  </div>
+                  <div class="w-full md:w-24">
+                      <input class="inp w-full md:w-24" type="text" name="comment" placeholder="Commentaire" maxlength="20">
+                  </div>
+                  <div class="w-full md:w-40">
+                      <select class="w-full" name="category_id" required>
+                          <% for(const catName of category.categories) { %>
+                              <option value="<%= catName.id %>" style="background-color: <%= catName.color %>"><%= catName.name %></option>
+                          <% } %>
+                      </select>
+                  </div>
+                  <button class="button-all md:w-40 md:mt-0" type="submit">Ajouter</button>
+              </form>
+          <%}%>
+      <% } %>
+  </div>
+
+<div class="modal fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center hidden" id="edit-movement-modal">
+    <div class="bg-white p-8 max-w-md mx-auto rounded shadow-lg">
+        <form>
+        <div class="modal-movement-head">
+            <p class="modal-movement-title">Modifier un mouvement</p>
+            <button class="delete close" type="button-all" aria-label="close"></button>
+        </div>
+
+        <div class="modal-movement-body">
+            <div>
+                <label class="label" for="category">Catégorie :</label>
+                <select name="category_id">
+                    <option selected disabled slot="default-option"></option>
+                    <% for (const catName of categories[0].categories) {%>
+                        <option value="<%= catName.id %>" style="background-color: <%= catName.color %>"><%= catName.name %></option>
+                    <%}%>
+                </select>
+            </div>
+            <div>
+                <label for="amount">Montant</label>
+                <input type="number" min="0" name="amount">
+            </div>
+            <label for="comment">Commentaire</label>
+            <input type="text" name="comment" maxlength="20">
+        </div>
+
+        <div class="modal-movement-foot">
+            <button class="button is-success">Modifier</button>
+            <button class="button close" type="button">Annuler</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+
+    <section slot="tables-container" class="flex flex-col gap-6 text-center m-4 p-4 md:p-8 lg:p-16 rounded-lg bg-slate-200 box-border w-full md:w-4/5 overflow-x-auto">
+    <!-- Boucler ici les tableaux -->
+    </section>
+
+    <script src="/js/drag.js"></script>
+    <script src="/js/finance.js"></script>
+
+</body>
+
+<!-- Template base tableau -->
+
+<template id="table-template">
+            <table class="w-full">
+                <thead>
+                    <tr class="w-full">
+                        <th class="w-2/5 md:w-3/5" colspan="3">
+                            <!-- Insérer ici le nom de l'opération, textContent-->
+                            <p class="bg-blue-200 w-full h-12 rounded-tl-lg flex justify-center items-center" slot="operation-name">s du mois</p>
+                        </th>
+                        <th class="w-1/5">
+                            <p class="bg-blue-200 w-full h-12 flex justify-center items-center">Economie</p>
+                        </th>
+                        <th class="w-1/5">
+                            <p class="bg-blue-200 w-full h-12 rounded-tr-xl flex justify-center items-center">Mois précédent</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="items">
+                    <tr class="bg-slate-300">
+                        <td class="w-2/12 bg-blue-600/10">Catégorie</td>
+                        <td class="w-4/12">Mouvements</td>
+                        <td class="w-2/12 bg-blue-600/10">Total</td>
+                        <td class="w-2/12">€</td>
+                        <td class="w-2/12 bg-blue-600/10">Montant</td>
+                    </tr>
+                    <div slot="categories" >
+                    <!-- Boucler ici les catégories -->
+                    </div>
+                                
+                </tbody>
+            </table>
+
+</template>    
+
+<!-- Template categories des tableaux -->
+
+<template id="category-template">
+
+    <!-- Insérer ici le style background color avec la couleur de la catégorie. -->
+    <tr slot="category-color">
+        <!-- Insérer ici le nom de la catégorie, textContent -->
+        <td slot="category-name"></td>
+        <td>
+            <table class="items w-full">
+                <tr class="w-full" >
+                    <td class="flex justify-center" colspan="3"><img src="/img/icons/add.png" alt="plus"></td>
+                </tr>
+                <div slot="movements" >
+                <!-- Boucler ici les mouvements-->
+                </div>
+                
+
+            </table>
+        </td>
+        <td class="w-2/12">50000€</td>
+        <td class="w-2/12">50000€</td>
+        <td class="bg-blue-600/10 w-2/12">5000€</td>
+    </tr>
+</template>
+
+<!-- Template mouvements dans les catégories -->
+
+<template id="movement-template">
+
     
-</body>
-</html>
-</body>
+        <tr class="flex justify-center gap-x-4">
+            <td class="w-2/12 flex ml-4 items-center">
+                <!-- Insérer en dataset dans ce P : id, amount, comment, operation_id -->
+                <p class="edit-movement"><img class="w-6" src="/img/icons/edit.svg" alt="modifier"></p>
+                <a href="/finance/delete/${id}"><img class="w-6" src="/img/icons/delete.svg" alt="supprimer"></a>
+            </td>
+            <!-- Insérer ici le comment du mouvement, textContent -->
+            <td class="w-4/12" slot="movement-comment"></td>
+            <!-- Insérer ici le montant du mouvement, textContent -->
+            <td class="w-3/12" slot="movement-amount"></td>
+        </tr>
+
+</template>
+
 </html>

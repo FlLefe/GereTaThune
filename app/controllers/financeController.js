@@ -21,6 +21,14 @@ const financeController = {
         
         res.render('finance', { movements, categories });
     },
+    categories: async (req, res) => {
+     
+      const categories = await Operation.findAll({
+          include: 'categories'
+      })
+      
+      res.status(200).json(categories);
+  },
     
     addMovement: async (req, res) => {
         const { id } = req.params

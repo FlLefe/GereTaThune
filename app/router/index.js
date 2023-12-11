@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { homeController, userController, financeController, adminController } = require('../controllers');
+const { userController, financeController, adminController } = require('../controllers');
 const { auth, isAdmin, rateLimiter } = require('../../middlewares');
 
 // Page d'accueil
-router.get('/', homeController.index);
-router.get('/cgu', homeController.cgu);
 
 router.get('/register', userController.indexRegister);
 router.post('/register',rateLimiter, userController.register);
