@@ -6,9 +6,11 @@ const financeController = {
         
         const idUser = req.session.user.id
 
+        // Le user_id dans le include a été rentré a la main pour les test, penser a changer a l'avenir
+      
         const movements = await Operation.findAll({
             include : [{model : Category, as: "categories",
-            include: [{model : Movement, as :'movements', where : {user_id : idUser}
+            include: [{model : Movement, as :'movements', where : {user_id : 1}
             }]
         }]
             

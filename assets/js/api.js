@@ -22,28 +22,26 @@ const api = {
       const createdList = await apiResponse.json();
 
       return createdList;
-    }catch(error){
-      alert("Une erreur inattendue s'est produite. Merci de revenir plus tard...");
+    } catch(error){
+      console.error("Une erreur inattendue s'est produite. Merci de revenir plus tard...");
     }
   },
 
   async isConnect () {
     try{
-      console.log('banane 1>>');
 
       const session = await fetch(`${config.baseUrl}session`);
-      console.log('banane 2>>');
-      
-      if (!session.ok){
-        throw new Error(`Erreur HTTP : ${session.status}`);
-      }
-      console.log('banane 3 >>');
       
       const sessionData = await session.json();
 
+      if (!session.ok){
+        alert(sessionData.message);
+        return;
+      }
+
       return sessionData;
     } catch(error){
-      alert("Une erreur inattendue s'est produite. Merci de revenir plus tot...");
+      console.error("Une erreur inattendue s'est produite. Merci de revenir plus tard...");
     }
   },
 

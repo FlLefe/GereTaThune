@@ -83,7 +83,8 @@ const userController = {
             const sessionData = req.session.user;
 
             console.log(sessionData);
-            res.json(sessionData);
+            res.status(200).json(sessionData);
+
         } catch (error) {
             res.status(500).send('Server Error');
         }

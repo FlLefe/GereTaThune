@@ -7,6 +7,7 @@ const nav = {
         try {
           const navDom = document.getElementById('nav');
           const content = document.createElement('div');
+          
           const sessionResponse = await api.isConnect();
     
           if (sessionResponse) {
@@ -28,4 +29,4 @@ const nav = {
     }
 };
 
-export default nav;
+nav.fetchSessionData();
