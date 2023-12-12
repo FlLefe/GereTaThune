@@ -29,8 +29,18 @@ const api = {
 
   async isConnect () {
     try{
+      const sessionToken = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('sessionToken='))
+      .split('=')[1];
 
-      const session = await fetch(`${config.baseUrl}session`);
+      const session = await fetch(`${config.baseUrl}session`,{
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionToken}`,
+        },
+      });
       
       const sessionData = await session.json();
 

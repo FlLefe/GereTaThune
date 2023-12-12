@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
+const expressSession = require('express-session');
 
 const userController = {
     indexRegister: (req, res) => {
@@ -67,12 +68,17 @@ const userController = {
         }
 
         foundUser.password = "";
+
+        const token = expressSession.generateToken();
+        res.cookie("sessionToken", token);
         console.log('foundUser >>' + JSON.stringify(foundUser,null,2));
+        console.log('res.cookie >>' + JSON.stringify(res.cookie, null, 2));
+        
         
         req.session.user = foundUser;
         
         console.log('coucou4 >>'+ JSON.stringify(req.session.user));
-        res.status(201).json(foundUser);
+        res.status(201).send("Vous êtes connecté.");
         } catch (error) {
             res.status(500).send('Server Error');
         }

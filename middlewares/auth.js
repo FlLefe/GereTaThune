@@ -1,5 +1,6 @@
 const auth = (req, res, next) => {
-    if (req.session.user) {
+
+    if (req.session.authenticated) {
         // On passe la main au middleware suivant si le user est bien loggé (ie, dans la session)
         return next();
     }

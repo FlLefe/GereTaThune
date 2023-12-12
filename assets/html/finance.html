@@ -108,7 +108,7 @@
             <table class="w-full">
                 <thead>
                     <tr class="w-full">
-                        <th class="w-2/5 md:w-3/5" colspan="3">
+                        <th slot="operation-main" class="w-2/5 md:w-3/5" colspan="3">
                             <!-- Insérer ici le nom de l'opération, textContent-->
                             <p class="bg-blue-200 w-full h-12 rounded-tl-lg flex justify-center items-center" slot="operation-name">s du mois</p>
                         </th>
@@ -142,7 +142,7 @@
 <template id="category-template">
 
     <!-- Insérer ici le style background color avec la couleur de la catégorie. -->
-    <tr slot="category-color">
+    <tr slot="category-main">
         <!-- Insérer ici le nom de la catégorie, textContent -->
         <td slot="category-name"></td>
         <td>
